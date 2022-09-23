@@ -4,7 +4,7 @@ import { Image } from 'react-native';
 const Banner: React.FC = () => {
     return (
         <Image
-            style={{ width: '90%', maxWidth: 150, resizeMode: 'contain' }}
+            style={{ width: 150, resizeMode: 'contain', position: 'static' }}
             source={require('../../assets/banner.png')}
         />
     );
