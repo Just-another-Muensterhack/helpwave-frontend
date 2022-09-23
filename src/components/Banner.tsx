@@ -5,7 +5,6 @@ const Banner: React.FC = () => {
     return (
         <View
             style={{
-                backgroundColor: 'black',
                 width: '100%',
                 alignItems: 'center',
             }}
