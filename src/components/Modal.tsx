@@ -3,30 +3,52 @@ import { StyleSheet, View, Text, Pressable } from 'react-native';
 
 import { ColorPrimary } from '../style-constants';
 
-type ModalProps = {
-    question: string;
-    answers: string[];
-    onAnswer: (answer: string) => void;
+export type ModalAnswer<T> = {
+    text: string;
+    id: string;
+    connotation: 'negative' | 'positive' | 'neutral';
+    data: T;
 };
 
-const Modal: React.FC<ModalProps> = ({ question, answers, onAnswer }) => {
+type ModalProps<T> = {
+    question: string;
+    answers: ModalAnswer<T>[];
+    onAnswer: (answer: ModalAnswer<T>) => void;
+};
+
+function Modal<T>({ question, answers, onAnswer }: ModalProps<T>) {
     return (
         <View style={styles.modal}>
             <Text style={styles.question}>{question}</Text>
             <View style={styles.answerContainer}>
                 {answers.map((answer) => (
                     <Pressable
-                        style={styles.answer}
-                        key={answer}
+                        style={[
+                            styles.answer,
+                            connotationStyles[answer.connotation],
+                        ]}
+                        key={answer.id}
                         onPress={() => onAnswer(answer)}
                     >
-                        <Text style={styles.answerText}>{answer}</Text>
+                        <Text style={styles.answerText}>{answer.text}</Text>
                     </Pressable>
                 ))}
             </View>
         </View>
     );
-};
+}
+
+const connotationStyles = StyleSheet.create({
+    negative: {
+        backgroundColor: '#ff0000', // TODO
+    },
+    positive: {
+        backgroundColor: '#00ff00', // TODO
+    },
+    neutral: {
+        backgroundColor: '#0000ff', // TODO
+    },
+});
 
 const styles = StyleSheet.create({
     modal: {
