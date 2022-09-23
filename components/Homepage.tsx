@@ -1,8 +1,8 @@
-import {Pressable, StyleSheet, Text, View} from "react-native";
-import "../style-constants"
-import {ColorAccentPositive, ColorAccentWarn, ColorPrimary, ColorSecondary} from "../style-constants";
-import React from "react";
-import {NavigationProp} from "@react-navigation/native";
+import {Pressable, StyleSheet, Text, View} from 'react-native';
+import '../style-constants'
+import {ColorAccentPositive, ColorAccentWarn, ColorPrimary, ColorSecondary} from '../style-constants';
+import React from 'react';
+import {NavigationProp} from '@react-navigation/native';
 
 type HomepageProps = {
     navigation: NavigationProp<any>,
@@ -37,31 +37,31 @@ const styles = StyleSheet.create({
 
     emergencyText: {
         color: ColorPrimary,
-        textAlign: "center",
+        textAlign: 'center',
         fontSize: 32
     },
 
     emergencyContainer: {
         backgroundColor: ColorAccentWarn,
-        height: "25%",
-        width: "60%",
-        justifyContent: "center",
-        display: "flex",
+        height: '25%',
+        width: '60%',
+        justifyContent: 'center',
+        display: 'flex',
         borderRadius: 10,
     },
 
     settingsText: {
         color: ColorPrimary,
-        textAlign: "center",
+        textAlign: 'center',
         fontSize: 18
     },
 
     settingsContainer: {
         backgroundColor: ColorAccentPositive,
-        height: "10%",
-        width: "60%",
-        justifyContent: "center",
-        display: "flex",
+        height: '10%',
+        width: '60%',
+        justifyContent: 'center',
+        display: 'flex',
         borderRadius: 10,
     },
 })
