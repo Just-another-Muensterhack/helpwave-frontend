@@ -4,6 +4,7 @@ import { registerRootComponent } from 'expo';
 import React from 'react';
 
 import { OpenAPI } from './api';
+import AcceptPage from './components/AcceptPage';
 import Banner from './components/Banner';
 import Emergency from './components/Emergency';
 import Homepage from './components/Homepage';
@@ -40,6 +41,11 @@ export default function App() {
                     <Stack.Screen
                         name="Emergency"
                         component={Emergency}
+                        options={idkOptions}
+                    />
+                    <Stack.Screen
+                        name="AcceptPage"
+                        component={AcceptPage}
                         options={idkOptions}
                     />
                 </Stack.Navigator>

@@ -27,7 +27,7 @@ const Homepage: React.FC<HomepageProps> = ({ navigation }) => {
             <Pressable style={styles.settingsContainer}>
                 <Text
                     style={styles.settingsText}
-                    onPress={() => navigation.navigate('Settings', {})}
+                    onPress={() => navigation.navigate('AcceptPage', {})}
                 >
                     Einstellungen
                 </Text>
