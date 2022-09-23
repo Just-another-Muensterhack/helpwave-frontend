@@ -8,7 +8,9 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "build:web": "expo export:web",
-    "openapi": "openapi generate -i https://main.helpwave.de/openapi.json -o api && echo '# DO NOT EDIT\n\nAuto-generiert durch `npm run openapi`. Bitte nichts in diesem Ordner von Hand ändern.' > api/README.md"
+    "openapi": "openapi generate -i https://main.helpwave.de/openapi.json -o api && echo '# DO NOT EDIT\n\nAuto-generiert durch `npm run openapi`. Bitte nichts in diesem Ordner von Hand ändern.' > api/README.md",
+    "lint": "eslint \"components/**/*.{js,jsx,ts,tsx}\"",
+    "lint:fix": "npm run lint -- --fix"
   },
   "dependencies": {
     "@expo/webpack-config": "^0.17.0",
@@ -25,6 +27,11 @@
     "@babel/core": "^7.12.9",
     "@types/react": "~18.0.14",
     "@types/react-native": "~0.69.1",
+    "@typescript-eslint/eslint-plugin": "^5.38.0",
+    "@typescript-eslint/parser": "^5.38.0",
+    "eslint": "^8.23.1",
+    "eslint-config-universe": "^11.1.0",
+    "prettier": "^2.7.1",
     "typescript": "~4.3.5"
   },
   "private": true
