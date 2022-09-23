@@ -1,11 +1,11 @@
-import React from 'react'
-import { StyleSheet, View, Text, Pressable } from 'react-native'
+import React from 'react';
+import { StyleSheet, View, Text, Pressable } from 'react-native';
 
 type ModalProps = {
-  question: string,
-  answers: string[]
-  onAnswer: (answer: string) => void
-}
+    question: string;
+    answers: string[];
+    onAnswer: (answer: string) => void;
+};
 
 const Modal: React.FC<ModalProps> = ({ question, answers, onAnswer }) => {
   return (
