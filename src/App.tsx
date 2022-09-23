@@ -1,9 +1,9 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { registerRootComponent } from 'expo';
-import { Text } from 'react-native';
 
 import { OpenAPI } from './api';
+import Banner from './components/Banner';
 import Homepage from './components/Homepage';
 import { ColorSecondary } from './style-constants';
 
@@ -24,14 +24,10 @@ export default function App() {
                         headerStyle: {
                             backgroundColor: ColorSecondary,
                         },
-                        headerTitle: (props) => {
-                            return (
-                                //Replace Text with Toolbar
-                                <Text style={{ color: 'white' }}>
-                                    {props.children}
-                                </Text>
-                            );
+                        headerTitle: (_props) => {
+                            return <Banner />;
                         },
+                        headerTitleAlign: 'center',
                     }}
                 />
             </Stack.Navigator>
