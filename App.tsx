@@ -1,6 +1,11 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, Text, View } from 'react-native'
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, View } from 'react-native';
+import { OpenAPI } from './api';
 import Modal from './components/Modal'
+
+OpenAPI.BASE = "https://main.helpwave.de";
 
 export default function App() {
   return (
