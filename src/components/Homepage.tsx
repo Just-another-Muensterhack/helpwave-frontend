@@ -8,7 +8,6 @@ import {
     ColorPrimary,
     ColorSecondary,
 } from '../style-constants';
-import Banner from './Banner';
 
 type HomepageProps = {
     navigation: NavigationProp<any>;
@@ -17,7 +16,6 @@ type HomepageProps = {
 const Homepage: React.FC<HomepageProps> = ({ navigation }) => {
     return (
         <View style={styles.container}>
-            <Banner />
             <Pressable style={styles.emergencyContainer}>
                 <Text
                     style={styles.emergencyText}
