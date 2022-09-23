@@ -1,5 +1,5 @@
-export const colorPrimary = "white";
-export const colorSecondary = "#333";
-export const colorTertiary = "darkblue";
-export const colorAccentWarn = "red";
-export const colorAccentPositive = "green";
+export const ColorPrimary = "white";
+export const ColorSecondary = "#333";
+export const ColorTertiary = "darkblue";
+export const ColorAccentWarn = "red";
+export const ColorAccentPositive = "green";

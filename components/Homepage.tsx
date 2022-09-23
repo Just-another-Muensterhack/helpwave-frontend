@@ -1,6 +1,6 @@
 import {Pressable, StyleSheet, Text, View} from "react-native";
 import "../style-constants"
-import {colorAccentPositive, colorAccentWarn, colorPrimary, colorSecondary} from "../style-constants";
+import {ColorAccentPositive, ColorAccentWarn, ColorPrimary, ColorSecondary} from "../style-constants";
 import React from "react";
 import {NavigationProp} from "@react-navigation/native";
 
@@ -30,19 +30,19 @@ export default Homepage;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: colorSecondary,
+        backgroundColor: ColorSecondary,
         alignItems: 'center',
         justifyContent: 'space-around',
     },
 
     emergencyText: {
-        color: colorPrimary,
+        color: ColorPrimary,
         textAlign: "center",
         fontSize: 32
     },
 
     emergencyContainer: {
-        backgroundColor: colorAccentWarn,
+        backgroundColor: ColorAccentWarn,
         height: "25%",
         width: "60%",
         justifyContent: "center",
@@ -51,13 +51,13 @@ const styles = StyleSheet.create({
     },
 
     settingsText: {
-        color: colorPrimary,
+        color: ColorPrimary,
         textAlign: "center",
         fontSize: 18
     },
 
     settingsContainer: {
-        backgroundColor: colorAccentPositive,
+        backgroundColor: ColorAccentPositive,
         height: "10%",
         width: "60%",
         justifyContent: "center",
