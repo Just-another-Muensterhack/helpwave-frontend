@@ -7,9 +7,9 @@ import type { Graph } from '../utils/graph';
 import Modal from './Modal';
 
 type EmergencyLog = {
-    timestamp: number;
-    key: string;
-    value: string;
+    timestamp: string;
+    question: string;
+    answer: string;
 };
 
 type HasTranslationKey = {
@@ -25,27 +25,35 @@ const getTranslationByKey = (
 const Emergency = () => {
     const { graph } = useGraph();
     const [logs, setLogs] = useState<EmergencyLog[]>([]);
+    const appendLog = (log: EmergencyLog) => setLogs((logs) => [...logs, log]);
     const [currentQuestion, nextQuestion] = useQuestion(
         graph,
         (response, question) =>
             appendLog({
-                timestamp: Date.now(),
-                key: question.txt_id,
-                value: response.txt_id,
+                timestamp: new Date().toISOString(),
+                question: question.txt_id,
+                answer: response.txt_id,
             }),
         graph.nodes['consciousness'],
     );
-    const appendLog = (log: EmergencyLog) => setLogs((logs) => [...logs, log]);
 
     const sendLogs = async (logs: EmergencyLog[]): Promise<void> => {
-        // TODO: Implement
+        await fetch('https://main.helpwave.de/emergency/log/bulk', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(logs),
+        });
     };
 
     useEffect(() => {
         if (logs.length <= 0) return;
-        sendLogs(logs).then(() => {
-            setLogs([]);
-        });
+        sendLogs(logs)
+            .then(() => {
+                setLogs([]);
+            })
+            .catch(console.error);
     }, [logs]);
 
     const question = getTranslationByKey(graph, currentQuestion, 'de');
