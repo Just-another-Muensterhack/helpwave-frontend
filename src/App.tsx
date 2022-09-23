@@ -1,9 +1,9 @@
-import { registerRootComponent } from 'expo';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Homepage from './components/Homepage';
+import { registerRootComponent } from 'expo';
 
 import { OpenAPI } from './api';
+import Homepage from './components/Homepage';
 
 // further reading: https://blog.logrocket.com/generating-integrating-openapi-services-react/
 OpenAPI.BASE = 'https://main.helpwave.de';
@@ -17,7 +17,7 @@ export default function App() {
                 <Stack.Screen
                     name="Home"
                     component={Homepage}
-                    options={{ title: 'Homepage'}}
+                    options={{ title: 'Homepage' }}
                 />
             </Stack.Navigator>
         </NavigationContainer>

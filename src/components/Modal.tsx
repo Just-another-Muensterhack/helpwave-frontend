@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, Pressable } from 'react-native';
-import {ColorPrimary} from "../../style-constants";
+
+import { ColorPrimary } from '../style-constants';
 
 type ModalProps = {
     question: string;
