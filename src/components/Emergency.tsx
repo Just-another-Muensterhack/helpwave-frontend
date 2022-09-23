@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
+import { useGraph } from '../hooks/useGraph';
 import type { Graph, Question, Response } from '../utils/graph';
 import Modal from './Modal';
 import type { ModalAnswer } from './Modal';
@@ -9,10 +10,6 @@ type EmergencyLog = {
     timestamp: number;
     key: string;
     value: string;
-};
-
-type EmergencyProps = {
-    graph: Graph;
 };
 
 type HasTranslationKey = {
@@ -36,10 +33,9 @@ const useQuestion = (
         const response: Response = {
             txt_id: answer.id,
             next: answer.data,
-            class: answer.connotation,
+            connotation: answer.connotation,
         };
-        console.log(answer, response);
-        const nextQuestion = graph.questions[answer.data];
+        const nextQuestion = graph.nodes[answer.data];
         if (!nextQuestion) throw new Error('The json structure is broken :/');
         onChange(response, nextQuestion);
         setQuestion(nextQuestion);
@@ -48,7 +44,8 @@ const useQuestion = (
     return [question, nextQuestion];
 };
 
-const Emergency: React.FC<EmergencyProps> = ({ graph }) => {
+const Emergency = () => {
+    const { graph } = useGraph();
     const [logs, setLogs] = useState<EmergencyLog[]>([]);
     const [currentQuestion, nextQuestion] = useQuestion(
         graph,
@@ -58,7 +55,7 @@ const Emergency: React.FC<EmergencyProps> = ({ graph }) => {
                 key: question.txt_id,
                 value: response.txt_id,
             }),
-        graph.questions['start_emergency'],
+        graph.nodes['start_emergency'],
     );
     const appendLog = (log: EmergencyLog) => setLogs((logs) => [...logs, log]);
 
@@ -78,7 +75,7 @@ const Emergency: React.FC<EmergencyProps> = ({ graph }) => {
     const responses = currentQuestion.responses.map((response) => ({
         text: getTranslationByKey(graph, response, 'de'),
         id: response.txt_id,
-        connotation: response['class'],
+        connotation: response.connotation,
         data: response.next,
     }));
 

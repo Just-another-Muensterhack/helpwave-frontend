@@ -1,32 +1,51 @@
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { registerRootComponent } from 'expo';
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
 
 import { OpenAPI } from './api';
-import graph from './api/graph';
+import Banner from './components/Banner';
 import Emergency from './components/Emergency';
-import Modal from './components/Modal';
+import Homepage from './components/Homepage';
+import { ProvideGraph } from './hooks/useGraph';
+import { ColorPrimary, ColorSecondary } from './style-constants';
 
 // further reading: https://blog.logrocket.com/generating-integrating-openapi-services-react/
 OpenAPI.BASE = 'https://main.helpwave.de';
 
+const Stack = createNativeStackNavigator();
+
+const idkOptions = {
+    headerTintColor: ColorPrimary,
+    headerShadowVisible: false,
+    headerStyle: {
+        backgroundColor: ColorSecondary,
+    },
+    headerTitle: (_props) => {
+        return <Banner />;
+    },
+    headerTitleAlign: 'center',
+};
+
 export default function App() {
     return (
-        <View style={styles.container}>
-            <Emergency graph={graph} />
-            <Text>Open up App.tsx to start working on your app!</Text>
-            <StatusBar style="auto" />
-        </View>
+        <ProvideGraph>
+            <NavigationContainer>
+                <Stack.Navigator>
+                    <Stack.Screen
+                        name="Homepage"
+                        component={Homepage}
+                        options={idkOptions}
+                    />
+                    <Stack.Screen
+                        name="Emergency"
+                        component={Emergency}
+                        options={idkOptions}
+                    />
+                </Stack.Navigator>
+            </NavigationContainer>
+        </ProvideGraph>
     );
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});
 
 registerRootComponent(App);

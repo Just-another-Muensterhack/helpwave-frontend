@@ -1,7 +1,7 @@
 export type Response = {
     txt_id: string;
     next: string;
-    class: 'positive' | 'negative' | 'neutral';
+    connotation: 'positive' | 'negative' | 'neutral';
 };
 
 export type Question = {
@@ -11,5 +11,5 @@ export type Question = {
 
 export type Graph = {
     language: { de: Record<string, string>; en: Record<string, string> };
-    questions: Record<string, Question>;
+    nodes: Record<string, Question>;
 };

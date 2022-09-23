@@ -3,17 +3,20 @@
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
+    "prepare": "node .scripts/download-static.js",
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "build:web": "expo export:web",
+    "build:web": "npm run prepare && expo export:web",
     "openapi": "openapi generate -i https://main.helpwave.de/openapi.json -o api && echo '# DO NOT EDIT\n\nAuto-generiert durch `npm run openapi`. Bitte nichts in diesem Ordner von Hand ändern.' > api/README.md",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "npm run lint -- --fix"
   },
   "dependencies": {
     "@expo/webpack-config": "^0.17.0",
+    "@react-navigation/native": "^6.0.13",
+    "@react-navigation/native-stack": "^6.9.0",
     "expo": "~46.0.9",
     "expo-status-bar": "~1.4.0",
     "openapi-typescript": "^5.4.1",
@@ -21,6 +24,8 @@
     "react": "18.0.0",
     "react-dom": "18.0.0",
     "react-native": "0.69.5",
+    "react-native-safe-area-context": "4.3.1",
+    "react-native-screens": "~3.15.0",
     "react-native-web": "~0.18.7"
   },
   "devDependencies": {
@@ -31,6 +36,7 @@
     "@typescript-eslint/parser": "^5.38.0",
     "eslint": "^8.23.1",
     "eslint-config-universe": "^11.1.0",
+    "node-wget-js": "^1.0.1",
     "prettier": "^2.7.1",
     "typescript": "~4.3.5"
   },

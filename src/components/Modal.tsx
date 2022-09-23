@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, View, Text, Pressable } from 'react-native';
 
+import { ColorPrimary } from '../style-constants';
+
 export type ModalAnswer<T> = {
     text: string;
     id: string;
@@ -43,7 +45,9 @@ const connotationStyles = StyleSheet.create({
     positive: {
         backgroundColor: '#00ff00', // TODO
     },
-    neutral: {}, // TODO
+    neutral: {
+        backgroundColor: '#0000ff', // TODO
+    },
 });
 
 const styles = StyleSheet.create({
@@ -74,14 +78,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         paddingVertical: 12,
         paddingHorizontal: 32,
-        borderColor: '#6c5ce7',
+        borderColor: ColorPrimary,
         borderWidth: 2,
         borderRadius: 9,
         margin: 8,
     },
     answerText: {
         fontSize: 16,
-        color: '#6c5ce7',
+        color: ColorPrimary,
     },
 });
 
