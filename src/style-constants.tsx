@@ -1,5 +1,5 @@
-export const ColorPrimary = 'white';
-export const ColorSecondary = '#333';
+export const ColorPrimary = '#EEE';
+export const ColorSecondary = '#111';
 export const ColorTertiary = 'darkblue';
-export const ColorAccentWarn = 'red';
-export const ColorAccentPositive = 'green';
+export const ColorAccentWarn = '#FF342A';
+export const ColorAccentPositive = '#25CC49';
