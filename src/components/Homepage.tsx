@@ -1,29 +1,40 @@
-import {Pressable, StyleSheet, Text, View} from 'react-native';
-import '../style-constants'
-import {ColorAccentPositive, ColorAccentWarn, ColorPrimary, ColorSecondary} from '../style-constants';
+import { NavigationProp } from '@react-navigation/native';
 import React from 'react';
-import {NavigationProp} from '@react-navigation/native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+
+import {
+    ColorAccentPositive,
+    ColorAccentWarn,
+    ColorPrimary,
+    ColorSecondary,
+} from '../style-constants';
 
 type HomepageProps = {
-    navigation: NavigationProp<any>,
-}
+    navigation: NavigationProp<any>;
+};
 
-const Homepage: React.FC<HomepageProps> = ({navigation}) => {
+const Homepage: React.FC<HomepageProps> = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <Pressable style={styles.emergencyContainer}>
-                <Text style={styles.emergencyText} onPress={() => navigation.navigate('Emergency', {})}>
+                <Text
+                    style={styles.emergencyText}
+                    onPress={() => navigation.navigate('Emergency', {})}
+                >
                     Emergency
                 </Text>
             </Pressable>
             <Pressable style={styles.settingsContainer}>
-                <Text style={styles.settingsText} onPress={() => navigation.navigate('Settings', {})}>
+                <Text
+                    style={styles.settingsText}
+                    onPress={() => navigation.navigate('Settings', {})}
+                >
                     Einstellungen
                 </Text>
             </Pressable>
         </View>
-    )
-}
+    );
+};
 
 export default Homepage;
 
@@ -38,7 +49,7 @@ const styles = StyleSheet.create({
     emergencyText: {
         color: ColorPrimary,
         textAlign: 'center',
-        fontSize: 32
+        fontSize: 32,
     },
 
     emergencyContainer: {
@@ -53,7 +64,7 @@ const styles = StyleSheet.create({
     settingsText: {
         color: ColorPrimary,
         textAlign: 'center',
-        fontSize: 18
+        fontSize: 18,
     },
 
     settingsContainer: {
@@ -64,4 +75,4 @@ const styles = StyleSheet.create({
         display: 'flex',
         borderRadius: 10,
     },
-})
+});
