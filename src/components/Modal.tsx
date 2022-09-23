@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, Pressable } from 'react-native';
+import {ColorPrimary} from "../../style-constants";
 
 type ModalProps = {
     question: string;
@@ -54,14 +55,14 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         paddingVertical: 12,
         paddingHorizontal: 32,
-        borderColor: '#6c5ce7',
+        borderColor: ColorPrimary,
         borderWidth: 2,
         borderRadius: 9,
         margin: 8,
     },
     answerText: {
         fontSize: 16,
-        color: '#6c5ce7',
+        color: ColorPrimary,
     },
 });
 
