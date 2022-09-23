@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
+
+import type { Graph, Question, Response } from '../utils/graph';
+import Modal from './Modal';
+import type { ModalAnswer } from './Modal';
 
 type EmergencyLog = {
     timestamp: number;
@@ -8,11 +12,54 @@ type EmergencyLog = {
 };
 
 type EmergencyProps = {
-    graph: object;
+    graph: Graph;
 };
 
-const Emergency: React.FC<EmergencyProps> = (props) => {
+type HasTranslationKey = {
+    txt_id: string;
+};
+
+const getTranslationByKey = (
+    graph: Graph,
+    source: HasTranslationKey,
+    language: keyof Graph['language'],
+) => graph.language[language][source.txt_id];
+
+const useQuestion = (
+    graph: Graph,
+    onChange: (response: Response, question: Question) => void,
+    startQuestion: Question,
+): [Question, (response: ModalAnswer<string>) => void] => {
+    const [question, setQuestion] = useState(startQuestion);
+
+    const nextQuestion = (answer: ModalAnswer<string>) => {
+        const response: Response = {
+            txt_id: answer.id,
+            next: answer.data,
+            class: answer.connotation,
+        };
+        console.log(answer, response);
+        const nextQuestion = graph.questions[answer.data];
+        if (!nextQuestion) throw new Error('The json structure is broken :/');
+        onChange(response, nextQuestion);
+        setQuestion(nextQuestion);
+    };
+
+    return [question, nextQuestion];
+};
+
+const Emergency: React.FC<EmergencyProps> = ({ graph }) => {
     const [logs, setLogs] = useState<EmergencyLog[]>([]);
+    const [currentQuestion, nextQuestion] = useQuestion(
+        graph,
+        (response, question) =>
+            appendLog({
+                timestamp: Date.now(),
+                key: question.txt_id,
+                value: response.txt_id,
+            }),
+        graph.questions['start_emergency'],
+    );
     const appendLog = (log: EmergencyLog) => setLogs((logs) => [...logs, log]);
 
     const sendLogs = async (logs: EmergencyLog[]): Promise<void> => {
@@ -26,9 +73,22 @@ const Emergency: React.FC<EmergencyProps> = (props) => {
         });
     }, [logs]);
 
+    const question = getTranslationByKey(graph, currentQuestion, 'de');
+
+    const responses = currentQuestion.responses.map((response) => ({
+        text: getTranslationByKey(graph, response, 'de'),
+        id: response.txt_id,
+        connotation: response['class'],
+        data: response.next,
+    }));
+
     return (
         <View>
-            <Text style={styles.question}>Emergency</Text>
+            <Modal
+                question={question}
+                answers={responses}
+                onAnswer={nextQuestion}
+            />
         </View>
     );
 };
