@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { useGraph } from '../hooks/useGraph';
-import type { Graph, Question, Response } from '../utils/graph';
+import { useQuestion } from '../hooks/useQuestion';
+import type { Graph } from '../utils/graph';
 import Modal from './Modal';
-import type { ModalAnswer } from './Modal';
 
 type EmergencyLog = {
     timestamp: number;
@@ -21,28 +21,6 @@ const getTranslationByKey = (
     source: HasTranslationKey,
     language: keyof Graph['language'],
 ) => graph.language[language][source.txt_id];
-
-const useQuestion = (
-    graph: Graph,
-    onChange: (response: Response, question: Question) => void,
-    startQuestion: Question,
-): [Question, (response: ModalAnswer<string>) => void] => {
-    const [question, setQuestion] = useState(startQuestion);
-
-    const nextQuestion = (answer: ModalAnswer<string>) => {
-        const response: Response = {
-            txt_id: answer.id,
-            next: answer.data,
-            connotation: answer.connotation,
-        };
-        const nextQuestion = graph.nodes[answer.data];
-        if (!nextQuestion) throw new Error('The json structure is broken :/');
-        onChange(response, nextQuestion);
-        setQuestion(nextQuestion);
-    };
-
-    return [question, nextQuestion];
-};
 
 const Emergency = () => {
     const { graph } = useGraph();
