@@ -3,12 +3,11 @@
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
-    "prepare": "node .scripts/download-static.js",
     "start": "expo start",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "build:web": "npm run prepare && expo export:web",
+    "build:web": "expo export:web",
     "openapi": "openapi generate -i https://main.helpwave.de/openapi.json -o api && echo '# DO NOT EDIT\n\nAuto-generiert durch `npm run openapi`. Bitte nichts in diesem Ordner von Hand ändern.' > api/README.md",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "npm run lint -- --fix"
