@@ -12,7 +12,7 @@ const Banner: React.FC = () => {
         >
             <Image
                 style={{ width: '50%', maxWidth: 150 }}
-                source={require('../assets/banner.png')}
+                source={require('../../assets/banner.png')}
             />
         </View>
     );
