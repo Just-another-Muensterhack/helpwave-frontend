@@ -8,7 +8,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "build:web": "expo export:web",
-    "openapi": "openapi-generator-cli generate -i https://main.helpwave.de/openapi.json -g typescript-axios -o generated"
+    "openapi": "openapi generate -i https://main.helpwave.de/openapi.json -c typescript-axios -o api && echo '# DO NOT EDIT\n\nAuto-generiert durch `npm run openapi`. Bitte nichts in diesem Ordner von Hand ändern.' > api/README.md"
   },
   "dependencies": {
     "@expo/webpack-config": "^0.17.0",
