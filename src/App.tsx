@@ -3,6 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { registerRootComponent } from 'expo';
 
 import { OpenAPI } from './api';
+import AcceptPage from './components/AcceptPage';
 import Banner from './components/Banner';
 import Homepage from './components/Homepage';
 import { ColorPrimary, ColorSecondary } from './style-constants';
@@ -30,6 +31,11 @@ export default function App() {
                         },
                         headerTitleAlign: 'center',
                     }}
+                />
+                <Stack.Screen
+                    name="AcceptPage"
+                    component={AcceptPage}
+                    options={{ headerShown: false }}
                 />
             </Stack.Navigator>
         </NavigationContainer>
