@@ -47,5 +47,4 @@ jobs:
       - uses: peter-evans/create-pull-request@v4
         with:
           branch: auto-openapi-spec-update
-          author: GH Actions
           delete-branch: true
