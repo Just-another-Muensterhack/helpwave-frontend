@@ -24,7 +24,7 @@ jobs:
           expo-version: latest
 
       - name: Install dependencies
-        run: yarn install
+        run: npm ci
 
       - name: Publish app
         run: expo build:android
