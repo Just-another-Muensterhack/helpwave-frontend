@@ -39,5 +39,13 @@ jobs:
 
       - uses: stefanzweifel/git-auto-commit-action@v4
         with:
-          branch: main
+          branch: auto-openapi-spec-update
           commit_message: Automated regenerated openapi spec, due to change in backend main branch
+          create_branch: true
+          push_options: '--force'
+
+      - uses: peter-evans/create-pull-request@v4
+        with:
+          branch: auto-openapi-spec-update
+          author: Automated regenerated openapi spec, due to change in backend main branch
+          delete-branch: true
