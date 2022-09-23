@@ -5,8 +5,8 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import {
     ColorAccentPositive,
     ColorAccentWarn,
-    ColorPrimary,
     ColorSecondary,
+    ColorTextPrimary,
 } from '../style-constants';
 
 type HomepageProps = {
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     },
 
     emergencyText: {
-        color: ColorPrimary,
+        color: ColorTextPrimary,
         textAlign: 'center',
         fontSize: 32,
     },
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     },
 
     settingsText: {
-        color: ColorPrimary,
+        color: ColorTextPrimary,
         textAlign: 'center',
         fontSize: 18,
     },
