@@ -32,6 +32,17 @@ jobs:
         run: |
           npm ci
 
-      - name: Lint
+      - name: Regenerate OpenAPI spec
         run: |
           npm run openapi
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          branch: auto-openapi-spec-update
+          commit_message: Automated regenerated openapi spec, due to change in backend main branch
+
+      - uses: peter-evans/create-pull-request@v4
+        with:
+          branch: auto-openapi-spec-update
+          author: Github Actions
+          delete-branch: true
