@@ -2,7 +2,6 @@ import { NavigationProp } from '@react-navigation/native';
 import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
-
 import {
     ColorAccentPositive,
     ColorAccentWarn,
