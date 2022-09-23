@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  repository_dispatch:
+
+jobs:
+
+  openapi:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 17.9.1
+
+      - name: Get npm cache directory
+        id: npm-cache-directory
+        run: |
+          echo "::set-output name=directory::$(npm config get cache)"
+
+      - name: Cache npm
+        id: npm-cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.npm-cache-directory.outputs.directory }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys:
+            ${{ runner.os }}-node-
+
+      - name: Install dependencies
+        run: |
+          npm ci
+
+      - name: Regenerate OpenAPI spec
+        run: |
+          npm run openapi
+
+      - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          branch: auto-openapi-spec-update
+          commit_message: Automated regenerated openapi spec, due to change in backend main branch
+
+      - uses: peter-evans/create-pull-request@v4
+        with:
+          branch: auto-openapi-spec-update
+          author: Github Actions
+          delete-branch: true
