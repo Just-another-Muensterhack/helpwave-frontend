@@ -1,9 +1,11 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { registerRootComponent } from 'expo';
+import { Text } from 'react-native';
 
 import { OpenAPI } from './api';
 import Homepage from './components/Homepage';
+import { ColorSecondary } from './style-constants';
 
 // further reading: https://blog.logrocket.com/generating-integrating-openapi-services-react/
 OpenAPI.BASE = 'https://main.helpwave.de';
@@ -15,9 +17,22 @@ export default function App() {
         <NavigationContainer>
             <Stack.Navigator>
                 <Stack.Screen
-                    name="Home"
+                    name="Homepage"
                     component={Homepage}
-                    options={{ title: 'Homepage' }}
+                    options={{
+                        headerShadowVisible: false,
+                        headerStyle: {
+                            backgroundColor: ColorSecondary,
+                        },
+                        headerTitle: (props) => {
+                            return (
+                                //Replace Text with Toolbar
+                                <Text style={{ color: 'white' }}>
+                                    {props.children}
+                                </Text>
+                            );
+                        },
+                    }}
                 />
             </Stack.Navigator>
         </NavigationContainer>
