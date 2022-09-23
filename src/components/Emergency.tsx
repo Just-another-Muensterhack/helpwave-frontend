@@ -33,7 +33,7 @@ const Emergency = () => {
                 key: question.txt_id,
                 value: response.txt_id,
             }),
-        graph.nodes['start_emergency'],
+        graph.nodes['consciousness'],
     );
     const appendLog = (log: EmergencyLog) => setLogs((logs) => [...logs, log]);
 
