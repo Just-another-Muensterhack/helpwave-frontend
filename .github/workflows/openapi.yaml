@@ -1,5 +1,6 @@
 name: CI
 
+# openapi and cdn rebuild
 on:
   repository_dispatch:
 
