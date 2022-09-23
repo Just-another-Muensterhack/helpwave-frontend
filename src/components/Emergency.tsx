@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { useGraph } from '../hooks/useGraph';
+import { useLog } from '../hooks/useLog';
 import { useQuestion } from '../hooks/useQuestion';
 import type { Graph } from '../utils/graph';
 import Modal from './Modal';
 
 type EmergencyLog = {
-    timestamp: number;
-    key: string;
-    value: string;
+    timestamp: string;
+    question: string;
+    answer: string;
 };
 
 type HasTranslationKey = {
@@ -24,29 +25,17 @@ const getTranslationByKey = (
 
 const Emergency = () => {
     const { graph } = useGraph();
-    const [logs, setLogs] = useState<EmergencyLog[]>([]);
+    const appendLog = useLog<EmergencyLog>();
     const [currentQuestion, nextQuestion] = useQuestion(
         graph,
         (response, question) =>
             appendLog({
-                timestamp: Date.now(),
-                key: question.txt_id,
-                value: response.txt_id,
+                timestamp: new Date().toISOString(),
+                question: question.txt_id,
+                answer: response.txt_id,
             }),
         graph.nodes['start_emergency'],
     );
-    const appendLog = (log: EmergencyLog) => setLogs((logs) => [...logs, log]);
-
-    const sendLogs = async (logs: EmergencyLog[]): Promise<void> => {
-        // TODO: Implement
-    };
-
-    useEffect(() => {
-        if (logs.length <= 0) return;
-        sendLogs(logs).then(() => {
-            setLogs([]);
-        });
-    }, [logs]);
 
     const question = getTranslationByKey(graph, currentQuestion, 'de');
 
