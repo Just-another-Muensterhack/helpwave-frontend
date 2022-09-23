@@ -1,7 +1,7 @@
 import { registerRootComponent } from 'expo';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Homepage from '../components/Homepage';
+import Homepage from './components/Homepage';
 
 import { OpenAPI } from './api';
 
