@@ -10,8 +10,8 @@ const Banner: React.FC = () => {
             }}
         >
             <Image
-                style={{ width: '50%', maxWidth: 150 }}
-                source={require('../../assets/banner.svg')}
+                style={{ width: '50%', maxWidth: 150, resizeMode: 'contain' }}
+                source={require('../../assets/banner.png')}
             />
         </View>
     );
