@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import { useGraph } from '../hooks/useGraph';
-import { useLog } from '../hooks/useLog';
 import { useQuestion } from '../hooks/useQuestion';
 import type { Graph } from '../utils/graph';
 import Modal from './Modal';
@@ -25,7 +24,8 @@ const getTranslationByKey = (
 
 const Emergency = () => {
     const { graph } = useGraph();
-    const appendLog = useLog<EmergencyLog>();
+    const [logs, setLogs] = useState<EmergencyLog[]>([]);
+    const appendLog = (log: EmergencyLog) => setLogs((logs) => [...logs, log]);
     const [currentQuestion, nextQuestion] = useQuestion(
         graph,
         (response, question) =>
@@ -36,6 +36,25 @@ const Emergency = () => {
             }),
         graph.nodes['start_emergency'],
     );
+
+    const sendLogs = async (logs: EmergencyLog[]): Promise<void> => {
+        await fetch('https://main.helpwave.de/emergency/log/bulk', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(logs),
+        });
+    };
+
+    useEffect(() => {
+        if (logs.length <= 0) return;
+        sendLogs(logs)
+            .then(() => {
+                setLogs([]);
+            })
+            .catch(console.error);
+    }, [logs]);
 
     const question = getTranslationByKey(graph, currentQuestion, 'de');
 
