@@ -47,5 +47,5 @@ jobs:
       - uses: peter-evans/create-pull-request@v4
         with:
           branch: auto-openapi-spec-update
-          author: Automated regenerated openapi spec, due to change in backend main branch
+          author: GH Actions
           delete-branch: true
