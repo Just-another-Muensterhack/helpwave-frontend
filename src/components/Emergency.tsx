@@ -1,9 +1,11 @@
+import { NavigationProp } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 
 import { DefaultService, Question } from '../../api';
 import { useAuth } from '../hooks/useAuth';
 import { useGraph } from '../hooks/useGraph';
+import { useLanguage } from '../hooks/useLanguage';
 import { useQuestion } from '../hooks/useQuestion';
 import { ColorSecondary } from '../style-constants';
 import type { Graph } from '../utils/graph';
@@ -19,8 +21,10 @@ const getTranslationByKey = (
     language: keyof Graph['language'],
 ) => graph.language[language][source.txt_id];
 
-const Emergency = () => {
-    const [emergencyId, setEmergencyId] = useState<string | null>(null);
+const Emergency = ({ navigation }: { navigation: NavigationProp<any> }) => {
+    const currentLanguageCode = useLanguage()
+        .language.substring(0, 2)
+        .toLowerCase() as 'de' | 'en';
     const { graph } = useGraph();
     const [logs, setLogs] = useState<Question[]>([]);
     const { deviceId } = useAuth();
@@ -54,14 +58,26 @@ const Emergency = () => {
         }).then((data) => setEmergencyId(data.id));
     }, [deviceId]);
 
-    const question = getTranslationByKey(graph, currentQuestion, 'de');
+    const question = getTranslationByKey(graph, currentQuestion, currentLanguageCode);
 
     const responses = currentQuestion.responses.map((response) => ({
-        text: getTranslationByKey(graph, response, 'de'),
+        text: getTranslationByKey(graph, response, currentLanguageCode),
         id: response.txt_id,
         connotation: response.connotation,
         data: response.next,
     }));
+
+    useEffect(() => {
+        if (currentQuestion.end) {
+            navigation.navigate('EmergencyOverview', {
+                idfkMirIstDasAllesGeradeEgal: getTranslationByKey(
+                    graph,
+                    currentQuestion,
+                    currentLanguageCode,
+                ),
+            });
+        }
+    }, [currentQuestion]);
 
     return (
         <View style={{ backgroundColor: ColorSecondary, flex: 1 }}>
