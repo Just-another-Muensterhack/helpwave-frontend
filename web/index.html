@@ -91,17 +91,27 @@
             })
         }).then((token) => {
           console.log(token);
-          function send(access_token) {
-              fetch("https://main.helpwave.de/", {method: "", headers: {Authorization: "Bearer " + access_token}, body: JSON.stringify({token})});
+          function send(access_token, device_uuid) {
+              fetch("https://main.helpwave.de/user/device/token",
+              { 
+                method: "PUT",
+                headers: {
+                  Authorization: "Bearer " + access_token,
+                  'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({device_uuid, token})
+              });
           }
           let access_token = localStorage.getItem('@auth_token');
-          if (access_token) {
-            send(access_token);
+          let uuid = localStorage.getItem('@device_uuid');
+          if (access_token && uuid) {
+            send(access_token, uuid);
           } else {
             function f() {
               access_token = localStorage.getItem('@auth_token');
-              if (access_token) {
-                send(access_token);
+              uuid = localStorage.getItem('@device_uuid');
+              if (access_token && uuid) {
+                send(access_token, uuid);
               } else {
                 window.removeEventListener('storage', f);
               }
