@@ -3,6 +3,6 @@
 /* eslint-disable */
 
 export type UuidResponse = {
-    id: string;
+    uuid: string;
 };
 

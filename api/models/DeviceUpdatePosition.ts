@@ -2,10 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type EmergencyInfo = {
-    id: string;
+export type DeviceUpdatePosition = {
+    device_uuid: string;
     lat: number;
     lon: number;
-    severity: number;
 };
 

@@ -2,7 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type CreateEmergency = {
+export type EmergencyCreate = {
     device: string;
 };
 

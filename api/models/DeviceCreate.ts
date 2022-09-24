@@ -2,7 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type UuidRequest = {
-    id: string;
+export type DeviceCreate = {
+    user_uuid: string;
 };
 
