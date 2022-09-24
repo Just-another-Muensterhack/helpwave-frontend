@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 
 import { DefaultService } from '../../api';
+import { useAuth } from '../hooks/useAuth';
 import { LongLat, Event } from '../utils/types';
 import Log from './Log';
 import Map from './Map';
@@ -11,12 +12,14 @@ interface Props {
 }
 
 const AcceptedPage: React.FC<Props> = ({ position }) => {
+    useAuth();
+
     const [events, setEvents] = useState([] as Event[]);
 
     useEffect(() => {
         // poll-loop new events for 30 mins
         repeatNMinsLongEveryMSeconds(30, 30, () => {
-            DefaultService.emergencyLogSingleEmergencyLogGet()
+            DefaultService.emergencyLogInfoEmergencyLogGet()
                 .then((resp) => {
                     setEvents(
                         resp.questions.map(

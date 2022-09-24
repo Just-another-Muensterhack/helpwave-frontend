@@ -6,6 +6,12 @@ export const TranslationMap: {[key:string]:string} = {
   "Sprache": "Language",
   "Helfer Account": "Helper Account",
   "Einstellungen": "Settings",
+  "Es sind schon": "There are already",
+  "Helfende auf dem Weg zu dir": "helpers on their way to you",
+  "Bleibe":"Stay",
+  "ruhig":"calm",
+  "mach auf dich":"make yourself",
+  "aufmerksam":"noticeable",
 }
 
 export function safeTranslate(german:string, language:string){

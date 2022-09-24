@@ -4,7 +4,7 @@
 
 import type { Question } from './Question';
 
-export type BulkLog = {
+export type QuestionBulk = {
     questions: Array<Question>;
 };
 

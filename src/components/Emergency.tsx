@@ -38,7 +38,7 @@ const Emergency = () => {
 
     useEffect(() => {
         if (logs.length <= 0) return;
-        DefaultService.emergencyLogSingleEmergencyLogBulkPut({
+        DefaultService.emersgencyLogBulkEmergencyLogBulkPut({
             questions: logs,
         })
             .then(() => {
@@ -49,9 +49,9 @@ const Emergency = () => {
 
     useEffect(() => {
         if (!deviceId || emergencyId) return;
-        DefaultService.userCreateEmergencyCreatePost({ device: deviceId }).then(
-            (data) => setEmergencyId(data.id),
-        );
+        DefaultService.emergencyCreateEmergencyCreatePost({
+            device: deviceId,
+        }).then((data) => setEmergencyId(data.id));
     }, [deviceId]);
 
     const question = getTranslationByKey(graph, currentQuestion, 'de');

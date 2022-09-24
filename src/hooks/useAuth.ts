@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { DefaultService, OpenAPI } from '../../api';
 
 const getNewDeviceId = () =>
-    DefaultService.userDeviceAddUserDevicePut().then(({ id }) => id);
+    DefaultService.userDeviceCreateUserDevicePut().then(({ uuid }) => uuid);
 
 const getNewToken = () => DefaultService.userCreateUserCreatePost();
 
@@ -20,7 +20,8 @@ export const useAuth = () => {
             ]);
 
             if (!token) {
-                token = (await getNewToken()).id;
+                console.log(token);
+                token = (await getNewToken()).access_token;
             }
 
             await AsyncStorage.setItem('@auth_token', token);
@@ -31,7 +32,7 @@ export const useAuth = () => {
                 uuid = await getNewDeviceId();
             }
 
-            await AsyncStorage.setItem('@auth_token', token);
+            await AsyncStorage.setItem('@device_uuid', uuid);
             setDeviceId(uuid);
         })();
     }, []);

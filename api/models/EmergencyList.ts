@@ -2,9 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import type { EmergencyInfo } from './EmergencyInfo';
+import type { EmergencyBase } from './EmergencyBase';
 
 export type EmergencyList = {
-    emergencies: Array<EmergencyInfo>;
+    emergencies: Array<EmergencyBase>;
 };
 
