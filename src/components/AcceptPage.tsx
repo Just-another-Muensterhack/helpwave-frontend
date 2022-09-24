@@ -2,6 +2,7 @@ import { NavigationProp } from '@react-navigation/native';
 import React from 'react';
 import { View } from 'react-native';
 
+import { DefaultService } from '../../api';
 import { ColorSecondary } from '../style-constants';
 import Hey from './Hey';
 import Hr from './Hr';
@@ -13,13 +14,19 @@ interface Props {
 
 const AcceptPage: React.FC<Props> = ({ navigation }) => {
     function accept() {
-        // TODO
-
-        navigation.navigate('AcceptedPage');
+        DefaultService.emergencyLogSingleEmergencyAcceptPost()
+            .then(() => {
+                navigation.navigate('AcceptedPage');
+            })
+            .catch((e) => console.error(e));
     }
 
     function reject() {
-        // TODO
+        DefaultService.emergencyLogSingleEmergencyDenyPost()
+            .then(() => {
+                navigation.navigate('Homepage');
+            })
+            .catch((e) => console.error(e));
     }
 
     return (
