@@ -2,6 +2,8 @@ import { NavigationProp } from '@react-navigation/native';
 import React from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
+import { safeTranslate } from '../../assets/language/translationMap';
+import { useLanguage } from '../hooks/useLanguage';
 import {
     BorderRadius,
     ColorAccentWarn,
@@ -16,6 +18,7 @@ type HomepageProps = {
 };
 
 const Homepage: React.FC<HomepageProps> = ({ navigation }) => {
+    const currentLanguage = useLanguage().language;
     return (
         <View style={styles.container}>
             <Pressable
@@ -24,14 +27,16 @@ const Homepage: React.FC<HomepageProps> = ({ navigation }) => {
                     navigation.navigate('Emergency', {});
                 }}
             >
-                <HWText style={styles.emergencyText}>Notfall</HWText>
+                <HWText style={styles.emergencyText}>
+                    {safeTranslate('Notfall', currentLanguage)}
+                </HWText>
             </Pressable>
-            <Pressable style={styles.settingsContainer}>
-                <HWText
-                    style={styles.settingsText}
-                    onPress={() => navigation.navigate('Settings', {})}
-                >
-                    Einstellungen
+            <Pressable
+                style={styles.settingsContainer}
+                onPress={() => navigation.navigate('Settings', {})}
+            >
+                <HWText style={styles.settingsText}>
+                    {safeTranslate('Einstellungen', currentLanguage)}
                 </HWText>
             </Pressable>
         </View>
