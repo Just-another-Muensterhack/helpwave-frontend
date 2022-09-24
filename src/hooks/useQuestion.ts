@@ -17,7 +17,10 @@ export const useQuestion = (
             connotation: answer.connotation,
         };
         const nextQuestion = graph.nodes[answer.data];
-        if (!nextQuestion) throw new Error('The json structure is broken :/');
+        if (!nextQuestion)
+            throw new Error(
+                `The json structure is broken, could not find '${answer.data} :/'`,
+            );
         onChange(response, nextQuestion);
         setQuestion(nextQuestion);
     };

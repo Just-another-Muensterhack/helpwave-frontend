@@ -1,7 +1,14 @@
 import React from 'react';
 import { StyleSheet, View, Text, Pressable } from 'react-native';
 
-import { ColorTextPrimary } from '../style-constants';
+import {
+    BorderRadius,
+    ColorAccentNeutral,
+    ColorAccentPositive,
+    ColorGrey,
+    ColorSecondary,
+    ColorTextPrimary,
+} from '../style-constants';
 
 export type ModalAnswer<T> = {
     text: string;
@@ -40,13 +47,13 @@ function Modal<T>({ question, answers, onAnswer }: ModalProps<T>) {
 
 const connotationStyles = StyleSheet.create({
     negative: {
-        backgroundColor: '#ff0000', // TODO
+        backgroundColor: ColorGrey,
     },
     positive: {
-        backgroundColor: '#00ff00', // TODO
+        backgroundColor: ColorAccentPositive,
     },
     neutral: {
-        backgroundColor: '#0000ff', // TODO
+        backgroundColor: ColorAccentNeutral,
     },
 });
 
@@ -55,13 +62,14 @@ const styles = StyleSheet.create({
         width: '100%',
         flex: 1,
         flexDirection: 'column',
+        backgroundColor: ColorSecondary,
     },
     question: {
+        color: ColorTextPrimary,
         textAlign: 'center',
-        marginTop: 24,
-        marginBottom: 16,
-        marginLeft: 16,
-        marginRight: 16,
+        marginTop: '6%',
+        marginBottom: '16%',
+        marginHorizontal: 20,
         fontSize: 24,
         fontWeight: 'bold',
     },
@@ -69,6 +77,7 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         alignItems: 'center',
+        backgroundColor: ColorSecondary,
     },
     answer: {
         height: 50,
@@ -77,14 +86,16 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingVertical: 12,
-        paddingHorizontal: 32,
+        paddingHorizontal: 20,
+        marginBottom: '2.5%',
         borderColor: ColorTextPrimary,
         borderWidth: 2,
-        borderRadius: 9,
+        borderRadius: BorderRadius,
         margin: 8,
     },
     answerText: {
-        fontSize: 16,
+        fontSize: 18,
+        fontWeight: 'bold',
         color: ColorTextPrimary,
     },
 });
