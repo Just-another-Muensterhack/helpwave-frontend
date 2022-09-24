@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 
+import { useDevice } from '../hooks/useDevice';
 import { useGraph } from '../hooks/useGraph';
 import { useQuestion } from '../hooks/useQuestion';
 import type { Graph } from '../utils/graph';
@@ -25,6 +26,7 @@ const getTranslationByKey = (
 const Emergency = () => {
     const { graph } = useGraph();
     const [logs, setLogs] = useState<EmergencyLog[]>([]);
+    const uuid = useDevice();
     const appendLog = (log: EmergencyLog) => setLogs((logs) => [...logs, log]);
     const [currentQuestion, nextQuestion] = useQuestion(
         graph,
@@ -36,6 +38,8 @@ const Emergency = () => {
             }),
         graph.nodes['consciousness'],
     );
+
+    console.log(uuid)
 
     const sendLogs = async (logs: EmergencyLog[]): Promise<void> => {
         await fetch('https://main.helpwave.de/emergency/log/bulk', {
