@@ -2,6 +2,7 @@ import React from 'react';
 import { View, FlatList, Text } from 'react-native';
 
 import { Event } from '../utils/types';
+import HWText from './HWText';
 
 interface LogProps {
     events: Event[];
@@ -12,10 +13,10 @@ const Item: React.FC<{ event: Event }> = ({ event }) => {
         <View
             style={{ flexDirection: 'row', alignItems: 'flex-end', padding: 5 }}
         >
-            <Text style={{ fontSize: 20, paddingRight: 2, opacity: 0.7 }}>
+            <HWText style={{ fontSize: 20, paddingRight: 2, opacity: 0.7 }}>
                 {date2String(event.date)} Uhr -{' '}
-            </Text>
-            <Text style={{ fontSize: 20 }}>{event.text}</Text>
+            </HWText>
+            <HWText style={{ fontSize: 20 }}>{event.text}</HWText>
         </View>
     );
 };
@@ -23,9 +24,9 @@ const Item: React.FC<{ event: Event }> = ({ event }) => {
 const Log: React.FC<LogProps> = ({ events }) => {
     return (
         <View style={{ padding: 15, backgroundColor: 'white' }}>
-            <Text style={{ fontSize: 30, fontWeight: '700', padding: 5 }}>
+            <HWText style={{ fontSize: 30, fontWeight: '700', padding: 5 }}>
                 Details
-            </Text>
+            </HWText>
             <FlatList
                 data={events}
                 renderItem={({ item: event }) => Item({ event })}

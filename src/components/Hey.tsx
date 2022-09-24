@@ -1,7 +1,7 @@
 import React from 'react';
-import { Text } from 'react-native';
 
 import { ColorAccentPositive } from '../style-constants';
+import HWText from './HWText';
 
 interface Props {
     name: string;
@@ -10,10 +10,10 @@ interface Props {
 
 const Hey: React.FC<Props> = ({ name, kind }) => {
     return (
-        <Text style={{ fontSize: 25, color: 'white', padding: 40 }}>
-            Hey <Text style={{ color: ColorAccentPositive }}>{name}</Text>...
+        <HWText style={{ fontSize: 25, color: 'white', padding: 40 }}>
+            Hey <HWText style={{ color: ColorAccentPositive }}>{name}</HWText>...
             {kind === 'can_you_help' ? '\nkannst du helfen?' : ''}
-        </Text>
+        </HWText>
     );
 };
 

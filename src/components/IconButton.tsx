@@ -1,7 +1,8 @@
 import React from 'react';
-import { Image, Text, Pressable } from 'react-native';
+import { Image, Pressable } from 'react-native';
 
 import { ColorGrey } from '../style-constants';
+import HWText from './HWText';
 
 interface Props {
     icon: 'tick' | 'x';
@@ -31,7 +32,7 @@ const Button: React.FC<Props> = ({ icon, text, onPress }) => {
                         : require('../../assets/x.png')
                 }
             />
-            <Text style={{ color: 'white' }}>{'   ' + text}</Text>
+            <HWText style={{ color: 'white' }}>{'   ' + text}</HWText>
         </Pressable>
     );
 };

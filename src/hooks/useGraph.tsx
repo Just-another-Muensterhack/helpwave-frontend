@@ -5,10 +5,10 @@ import React, {
     useEffect,
     useState,
 } from 'react';
-import { Text } from 'react-native';
 
 import { ColorTextPrimary } from '../style-constants';
 import { Graph } from '../utils/graph';
+import HWText from '../components/HWText';
 
 const GraphContext = createContext<{ graph: Graph }>({
     graph: undefined as unknown as Graph, // TODO: i hate myself for this shit
@@ -34,7 +34,7 @@ export const ProvideGraph: React.FC<PropsWithChildren> = ({ children }) => {
             {graph ? (
                 children
             ) : (
-                <Text style={{ color: ColorTextPrimary }}>no graph found</Text>
+                <HWText style={{ color: ColorTextPrimary }}>no graph found</HWText>
             )}
         </GraphContext.Provider>
     );
