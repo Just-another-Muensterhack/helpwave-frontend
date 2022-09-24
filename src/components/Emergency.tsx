@@ -40,7 +40,7 @@ const Emergency = () => {
         graph.nodes['consciousness'],
     );
 
-    console.log(uuid)
+    console.log(uuid);
 
     const sendLogs = async (logs: EmergencyLog[]): Promise<void> => {
         await fetch('https://main.helpwave.de/emergency/log/bulk', {
