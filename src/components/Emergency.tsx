@@ -4,27 +4,22 @@ import { View } from 'react-native';
 import { DefaultService, Question } from '../../api';
 import { useAuth } from '../hooks/useAuth';
 import { useGraph } from '../hooks/useGraph';
+import { useLanguage } from '../hooks/useLanguage';
 import { useQuestion } from '../hooks/useQuestion';
 import { ColorSecondary } from '../style-constants';
 import type { Graph } from '../utils/graph';
 import Modal from './Modal';
 
-type HasTranslationKey = {
-    txt_id: string;
-};
-
-const getTranslationByKey = (
-    graph: Graph,
-    source: HasTranslationKey,
-    language: keyof Graph['language'],
-) => graph.language[language][source.txt_id];
-
 const Emergency = () => {
+    const language: keyof Graph['language'] = useLanguage()
+        .language.substr(0, 2)
+        .toLowerCase() as 'de' | 'en';
     const [emergencyId, setEmergencyId] = useState<string | null>(null);
     const { graph } = useGraph();
     const [logs, setLogs] = useState<Question[]>([]);
     const { deviceId } = useAuth();
-    const appendLog = (log: Question) => setLogs((logs) => [...logs, log]);
+    const appendLog = async (log: Question) =>
+        setLogs((logs) => [...logs, log]);
     const [currentQuestion, nextQuestion] = useQuestion(
         graph,
         (response, question) =>
@@ -51,13 +46,15 @@ const Emergency = () => {
         if (!deviceId || emergencyId) return;
         DefaultService.emergencyCreateEmergencyCreatePost({
             device: deviceId,
-        }).then((data) => setEmergencyId(data.id));
+        })
+            .then((data) => setEmergencyId(data.uuid))
+            .catch(console.error);
     }, [deviceId]);
 
-    const question = getTranslationByKey(graph, currentQuestion, 'de');
+    const question = graph.language[language][currentQuestion.txt_id];
 
     const responses = currentQuestion.responses.map((response) => ({
-        text: getTranslationByKey(graph, response, 'de'),
+        text: graph.language[language][response.txt_id],
         id: response.txt_id,
         connotation: response.connotation,
         data: response.next,

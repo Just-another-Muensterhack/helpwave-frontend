@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, View, Pressable } from 'react-native';
 
+import { useGraph } from '../hooks/useGraph';
+import { useLanguage } from '../hooks/useLanguage';
 import {
     BorderRadius,
     ColorAccentNeutral,
@@ -27,6 +29,11 @@ type ModalProps<T> = {
 };
 
 function Modal<T>({ question, answers, onAnswer, txt_id }: ModalProps<T>) {
+    const graph = useGraph().graph;
+    const currenLanguage: 'de' | 'en' = useLanguage()
+        .language.substr(0, 2)
+        .toLowerCase() as 'de' | 'en';
+    const currenLanguageGraph = graph.language[currenLanguage];
     const buttons = (
         <View style={styles.answerContainer}>
             {answers.map((answer) => (
@@ -38,7 +45,11 @@ function Modal<T>({ question, answers, onAnswer, txt_id }: ModalProps<T>) {
                     key={answer.id}
                     onPress={() => onAnswer(answer)}
                 >
-                    <HWText style={styles.answerText}>{answer.text}</HWText>
+                    <HWText style={styles.answerText}>
+                        {currenLanguageGraph[answer.id]
+                            ? currenLanguageGraph[answer.id]
+                            : answer.text}
+                    </HWText>
                 </Pressable>
             ))}
         </View>
