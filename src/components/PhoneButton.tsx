@@ -1,5 +1,5 @@
 import React from 'react';
-import { Pressable, Linking, Image } from 'react-native';
+import { Pressable, Linking, Image, View } from 'react-native';
 
 const PhoneButton: React.FC = () => {
     const onPress = async () => {
@@ -7,20 +7,24 @@ const PhoneButton: React.FC = () => {
     };
 
     return (
-        <Pressable
-            style={{
-                borderRadius: 400,
-                backgroundColor: 'green',
-                justifyContent: 'center',
-                alignItems: 'center',
-            }}
-            onPress={onPress}
-        >
-            <Image
-                source={require('../../assets/phone.png')}
-                style={{ width: 200, height: 200, resizeMode: 'contain' }}
-            />
-        </Pressable>
+        <View style={{ justifyContent: 'center', alignItems: 'center' }}>
+            <Pressable
+                style={{
+                    width: 220,
+                    height: 220,
+                    borderRadius: 400,
+                    backgroundColor: 'green',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }}
+                onPress={onPress}
+            >
+                <Image
+                    source={require('../../assets/phone.png')}
+                    style={{ width: 150, height: 150, resizeMode: 'contain' }}
+                />
+            </Pressable>
+        </View>
     );
 };
 
