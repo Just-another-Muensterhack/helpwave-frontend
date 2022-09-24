@@ -12,6 +12,7 @@ import { ProvideGraph } from './hooks/useGraph';
 import { ProvideLanguage } from './hooks/useLanguage';
 import { ColorAccentPositive, ColorSecondary } from './style-constants';
 
+
 // further reading: https://blog.logrocket.com/generating-integrating-openapi-services-react/
 OpenAPI.BASE = 'https://main.helpwave.de';
 
