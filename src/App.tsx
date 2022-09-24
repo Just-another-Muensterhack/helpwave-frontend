@@ -9,6 +9,7 @@ import AcceptPage from './components/AcceptPage';
 import AcceptedPage from './components/AcceptedPage';
 import Banner from './components/Banner';
 import Emergency from './components/Emergency';
+import EmergencyOverviewPage from './components/EmergencyOverview';
 import Homepage from './components/Homepage';
 import SettingsPage from './components/Settings';
 import { ProvideGraph } from './hooks/useGraph';
@@ -70,6 +71,11 @@ export default function App() {
                         <Stack.Screen
                             name="AcceptedPage"
                             component={AcceptedPage}
+                            options={idkOptions}
+                        />
+                        <Stack.Screen
+                            name="EmergencyOverview"
+                            component={EmergencyOverviewPage}
                             options={idkOptions}
                         />
                     </Stack.Navigator>
