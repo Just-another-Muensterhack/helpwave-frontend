@@ -1,5 +1,5 @@
 import { NavigationProp } from '@react-navigation/native';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
 import { DefaultService } from '../../api';
@@ -20,6 +20,9 @@ type HomepageProps = {
 };
 
 const Homepage: React.FC<HomepageProps> = ({ navigation }) => {
+    const [intervalState, setIntervalState] = useState<NodeJS.Timer | null>(
+        null,
+    );
     const currentLanguage = useLanguage().language;
     useAuth();
 
@@ -33,7 +36,10 @@ const Homepage: React.FC<HomepageProps> = ({ navigation }) => {
                 emergencyUuid: uuid,
             });
         }, 5000);
-        return () => clearInterval(interval);
+        setIntervalState(interval);
+        return () => {
+            if (intervalState) clearInterval(intervalState);
+        };
     }, []);
 
     return (
@@ -41,6 +47,7 @@ const Homepage: React.FC<HomepageProps> = ({ navigation }) => {
             <Pressable
                 style={styles.emergencyContainer}
                 onPress={() => {
+                    if (intervalState) clearInterval(intervalState);
                     navigation.navigate('Emergency', {});
                 }}
             >
@@ -50,7 +57,10 @@ const Homepage: React.FC<HomepageProps> = ({ navigation }) => {
             </Pressable>
             <Pressable
                 style={styles.settingsContainer}
-                onPress={() => navigation.navigate('Settings', {})}
+                onPress={() => {
+                    if (intervalState) clearInterval(intervalState);
+                    navigation.navigate('Settings', {});
+                }}
             >
                 <HWText style={styles.settingsText}>
                     {safeTranslate('Einstellungen', currentLanguage)}
