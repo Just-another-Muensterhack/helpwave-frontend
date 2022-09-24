@@ -2,7 +2,7 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type UuidRequest = {
-    id: string;
+export type DeviceDelete = {
+    device_uuid: string;
 };
 

@@ -3,6 +3,6 @@
 /* eslint-disable */
 
 export type UserDelete = {
-    user_id: string;
+    user_uuid: string;
 };
 

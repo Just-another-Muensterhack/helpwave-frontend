@@ -2,11 +2,9 @@
 /* tslint:disable */
 /* eslint-disable */
 
-export type UserInfo = {
-    id: string;
+export type UserRead = {
+    uuid: string;
     email?: string;
-    first_name?: string;
-    second_name?: string;
     role?: number;
 };
 
