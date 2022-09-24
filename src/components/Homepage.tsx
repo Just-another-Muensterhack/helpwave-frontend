@@ -3,8 +3,9 @@ import React from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import {
-    ColorAccentPositive,
+    BorderRadius,
     ColorAccentWarn,
+    ColorGrey,
     ColorSecondary,
     ColorTextPrimary,
 } from '../style-constants';
@@ -16,21 +17,19 @@ type HomepageProps = {
 const Homepage: React.FC<HomepageProps> = ({ navigation }) => {
     return (
         <View style={styles.container}>
-            <Pressable style={styles.emergencyContainer}>
-                <Text
-                    style={styles.emergencyText}
-                    onPress={() => navigation.navigate('Emergency', {})}
-                >
-                    Emergency
-                </Text>
+            <Pressable
+                style={styles.emergencyContainer}
+                onPress={() => {
+                    navigation.navigate('Emergency', {});
+                }}
+            >
+                <Text style={styles.emergencyText}>Notfall</Text>
             </Pressable>
-            <Pressable style={styles.settingsContainer}>
-                <Text
-                    style={styles.settingsText}
-                    onPress={() => navigation.navigate('Settings', {})}
-                >
-                    Einstellungen
-                </Text>
+            <Pressable
+                style={styles.settingsContainer}
+                onPress={() => navigation.navigate('Settings', {})}
+            >
+                <Text style={styles.settingsText}>Einstellungen</Text>
             </Pressable>
         </View>
     );
@@ -43,22 +42,23 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: ColorSecondary,
         alignItems: 'center',
-        justifyContent: 'space-around',
+        justifyContent: 'center',
     },
 
     emergencyText: {
         color: ColorTextPrimary,
         textAlign: 'center',
-        fontSize: 32,
+        fontSize: 35,
     },
 
     emergencyContainer: {
         backgroundColor: ColorAccentWarn,
-        height: '25%',
-        width: '60%',
+        height: '26%',
+        width: '66%',
         justifyContent: 'center',
         display: 'flex',
-        borderRadius: 10,
+        borderRadius: BorderRadius,
+        marginBottom: '12%',
     },
 
     settingsText: {
@@ -68,11 +68,12 @@ const styles = StyleSheet.create({
     },
 
     settingsContainer: {
-        backgroundColor: ColorAccentPositive,
+        backgroundColor: ColorGrey,
         height: '10%',
-        width: '60%',
+        width: '66%',
         justifyContent: 'center',
         display: 'flex',
-        borderRadius: 10,
+        borderRadius: BorderRadius,
+        marginBottom: '27%',
     },
 });
