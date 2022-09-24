@@ -8,7 +8,9 @@ import { OpenAPI } from '../api';
 import Banner from './components/Banner';
 import Emergency from './components/Emergency';
 import Homepage from './components/Homepage';
+import SettingsPage from './components/Settings';
 import { ProvideGraph } from './hooks/useGraph';
+import { ProvideLanguage } from './hooks/useLanguage';
 import { ColorAccentPositive, ColorSecondary } from './style-constants';
 
 // further reading: https://blog.logrocket.com/generating-integrating-openapi-services-react/
@@ -38,22 +40,30 @@ export default function App() {
     }
 
     return (
-        <ProvideGraph>
-            <NavigationContainer>
-                <Stack.Navigator>
-                    <Stack.Screen
-                        name="Homepage"
-                        component={Homepage}
-                        options={idkOptions}
-                    />
-                    <Stack.Screen
-                        name="Emergency"
-                        component={Emergency}
-                        options={idkOptions}
-                    />
-                </Stack.Navigator>
-            </NavigationContainer>
-        </ProvideGraph>
+        <ProvideLanguage>
+            <ProvideGraph>
+                <NavigationContainer>
+                    <Stack.Navigator>
+                        <Stack.Screen
+                            name="Homepage"
+                            component={Homepage}
+                            options={idkOptions}
+                        />
+                        <Stack.Screen
+                            name="Emergency"
+                            component={Emergency}
+                            options={idkOptions}
+                        />
+
+                        <Stack.Screen
+                            name="Settings"
+                            component={SettingsPage}
+                            options={idkOptions}
+                        />
+                    </Stack.Navigator>
+                </NavigationContainer>
+            </ProvideGraph>
+        </ProvideLanguage>
     );
 }
 
