@@ -4,5 +4,7 @@
 
 export type EmergencyCreate = {
     device: string;
+    latitude: number;
+    longitude: number;
 };
 

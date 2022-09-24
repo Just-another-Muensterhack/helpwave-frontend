@@ -46,9 +46,11 @@ const Emergency = () => {
         if (!deviceId || emergencyId) return;
         DefaultService.emergencyCreateEmergencyCreatePost({
             device: deviceId,
+            latitude: 0,
+            longitude: 0,
         })
-            .then((data) => setEmergencyId(data.uuid))
-            .catch(console.error);
+        .then((data) => setEmergencyId(data.uuid))           
+        .catch(console.error);
     }, [deviceId]);
 
     const question = graph.language[language][currentQuestion.txt_id];

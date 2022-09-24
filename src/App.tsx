@@ -1,8 +1,8 @@
-import { NavigationContainer } from '@react-navigation/native';
+import { NavigationContainer, useNavigation } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { registerRootComponent } from 'expo';
 import { useFonts } from 'expo-font';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { OpenAPI } from '../api';
 import AcceptPage from './components/AcceptPage';
