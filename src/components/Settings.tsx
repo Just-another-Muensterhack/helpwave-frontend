@@ -55,7 +55,7 @@ const SettingsPage: React.FC<SettingsPageProps> = ({ navigation }) => {
                             textAlign: 'right',
                         }}
                     >
-                        {safeTranslate('Helfer Account', currentLanguage) + '>'}
+                        {"Jonas " + '>'}
                     </Text>
                 </Pressable>
             </View>
