@@ -12,6 +12,7 @@ export const TranslationMap: {[key:string]:string} = {
   "ruhig":"calm",
   "mach auf dich":"make yourself",
   "aufmerksam":"noticeable",
+  "Meine Situation hat sich verändert": "Something changed about my Situation",
 }
 
 export function safeTranslate(german:string, language:string){
