@@ -5,7 +5,9 @@ import React, {
     useEffect,
     useState,
 } from 'react';
+import { Text } from 'react-native';
 
+import { ColorTextPrimary } from '../style-constants';
 import { Graph } from '../utils/graph';
 
 const GraphContext = createContext<{ graph: Graph }>({
@@ -29,7 +31,11 @@ export const ProvideGraph: React.FC<PropsWithChildren> = ({ children }) => {
 
     return (
         <GraphContext.Provider value={values}>
-            {graph ? children : <p>no graph found</p>}
+            {graph ? (
+                children
+            ) : (
+                <Text style={{ color: ColorTextPrimary }}>no graph found</Text>
+            )}
         </GraphContext.Provider>
     );
 };

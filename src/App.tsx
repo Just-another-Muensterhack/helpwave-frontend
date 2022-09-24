@@ -8,7 +8,7 @@ import Banner from './components/Banner';
 import Emergency from './components/Emergency';
 import Homepage from './components/Homepage';
 import { ProvideGraph } from './hooks/useGraph';
-import { ColorPrimary, ColorSecondary } from './style-constants';
+import { ColorAccentPositive, ColorSecondary } from './style-constants';
 
 // further reading: https://blog.logrocket.com/generating-integrating-openapi-services-react/
 OpenAPI.BASE = 'https://main.helpwave.de';
@@ -16,7 +16,7 @@ OpenAPI.BASE = 'https://main.helpwave.de';
 const Stack = createNativeStackNavigator();
 
 const idkOptions = {
-    headerTintColor: ColorPrimary,
+    headerTintColor: ColorAccentPositive,
     headerShadowVisible: false,
     headerStyle: {
         backgroundColor: ColorSecondary,

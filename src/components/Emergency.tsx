@@ -3,6 +3,7 @@ import { StyleSheet, View } from 'react-native';
 
 import { useGraph } from '../hooks/useGraph';
 import { useQuestion } from '../hooks/useQuestion';
+import { ColorSecondary } from '../style-constants';
 import type { Graph } from '../utils/graph';
 import Modal from './Modal';
 
@@ -66,7 +67,7 @@ const Emergency = () => {
     }));
 
     return (
-        <View>
+        <View style={{ backgroundColor: ColorSecondary, flex: 1 }}>
             <Modal
                 question={question}
                 answers={responses}
@@ -75,17 +76,5 @@ const Emergency = () => {
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    question: {
-        textAlign: 'center',
-        marginTop: 24,
-        marginBottom: 16,
-        marginLeft: 16,
-        marginRight: 16,
-        fontSize: 24,
-        fontWeight: 'bold',
-    },
-});
 
 export default Emergency;
