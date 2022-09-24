@@ -8,11 +8,13 @@ export type { OpenAPIConfig } from './core/OpenAPI';
 
 export type { DeviceDelete } from './models/DeviceDelete';
 export type { DevicesList } from './models/DevicesList';
-export type { DeviceUpdateCoordinates } from './models/DeviceUpdateCoordinates';
 export type { DeviceUpdatePosition } from './models/DeviceUpdatePosition';
 export type { EmergencyBase } from './models/EmergencyBase';
 export type { EmergencyCreate } from './models/EmergencyCreate';
+export type { EmergencyDelete } from './models/EmergencyDelete';
 export type { EmergencyList } from './models/EmergencyList';
+export type { EmergencyRead } from './models/EmergencyRead';
+export type { EmergencyUUID } from './models/EmergencyUUID';
 export type { HTTPValidationError } from './models/HTTPValidationError';
 export type { Question } from './models/Question';
 export type { QuestionBulk } from './models/QuestionBulk';

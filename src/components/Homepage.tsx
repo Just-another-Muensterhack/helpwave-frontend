@@ -1,8 +1,10 @@
 import { NavigationProp } from '@react-navigation/native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
+import { DefaultService } from '../../api';
 import { safeTranslate } from '../../assets/language/translationMap';
+import { useAuth } from '../hooks/useAuth';
 import { useLanguage } from '../hooks/useLanguage';
 import {
     BorderRadius,
@@ -19,6 +21,21 @@ type HomepageProps = {
 
 const Homepage: React.FC<HomepageProps> = ({ navigation }) => {
     const currentLanguage = useLanguage().language;
+    useAuth();
+
+    useEffect(() => {
+        const interval = setInterval(async () => {
+            const { uuid } =
+                await DefaultService.emergencyPollEmergencyPollGet();
+            if (!uuid) return;
+            clearInterval(interval);
+            navigation.navigate('AcceptPage', {
+                emergencyUuid: uuid,
+            });
+        }, 5000);
+        return () => clearInterval(interval);
+    }, []);
+
     return (
         <View style={styles.container}>
             <Pressable
