@@ -82,8 +82,7 @@ const styles = StyleSheet.create({
     },
     answer: {
         height: 50,
-        minWidth: 240,
-        width: 'fit-content',
+        minWidth: 300,
         alignItems: 'center',
         justifyContent: 'center',
         paddingVertical: 12,
