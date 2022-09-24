@@ -6,7 +6,6 @@ export { CancelablePromise, CancelError } from './core/CancelablePromise';
 export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
-export type { DeviceCreate } from './models/DeviceCreate';
 export type { DeviceDelete } from './models/DeviceDelete';
 export type { DevicesList } from './models/DevicesList';
 export type { DeviceUpdateCoordinates } from './models/DeviceUpdateCoordinates';

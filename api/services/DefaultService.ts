@@ -1,7 +1,6 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { DeviceCreate } from '../models/DeviceCreate';
 import type { DeviceDelete } from '../models/DeviceDelete';
 import type { DevicesList } from '../models/DevicesList';
 import type { DeviceUpdateCoordinates } from '../models/DeviceUpdateCoordinates';
@@ -72,21 +71,13 @@ export class DefaultService {
     /**
      * User Device Create
      * adds a new device to a user
-     * @param requestBody
      * @returns UuidResponse Successful Response
      * @throws ApiError
      */
-    public static userDeviceCreateUserDevicePut(
-        requestBody: DeviceCreate,
-    ): CancelablePromise<UuidResponse> {
+    public static userDeviceCreateUserDevicePut(): CancelablePromise<UuidResponse> {
         return __request(OpenAPI, {
             method: 'PUT',
             url: '/user/device',
-            body: requestBody,
-            mediaType: 'application/json',
-            errors: {
-                422: `Validation Error`,
-            },
         });
     }
 
