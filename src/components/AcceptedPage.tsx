@@ -16,7 +16,7 @@ const AcceptedPage: React.FC<Props> = ({ position }) => {
     useEffect(() => {
         // poll-loop new events for 30 mins
         repeatNMinsLongEveryMSeconds(30, 30, () => {
-            DefaultService.emergencyLogSingleEmergencyLogGet()
+            DefaultService.emergencyLogInfoEmergencyLogGet()
                 .then((resp) => {
                     setEvents(
                         resp.questions.map(

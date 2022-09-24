@@ -14,7 +14,7 @@ interface Props {
 
 const AcceptPage: React.FC<Props> = ({ navigation }) => {
     function accept() {
-        DefaultService.emergencyLogSingleEmergencyAcceptPost()
+        DefaultService.emergencyAcceptEmergencyAcceptPost()
             .then(() => {
                 navigation.navigate('AcceptedPage', {});
             })
@@ -22,7 +22,7 @@ const AcceptPage: React.FC<Props> = ({ navigation }) => {
     }
 
     function reject() {
-        DefaultService.emergencyLogSingleEmergencyDenyPost()
+        DefaultService.emergencyDenyEmergencyDenyPost()
             .then(() => {
                 navigation.navigate('Homepage', {});
             })
