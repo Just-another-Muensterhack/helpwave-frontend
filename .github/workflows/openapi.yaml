@@ -43,6 +43,7 @@ jobs:
           commit_message: Automated regenerated openapi spec, due to change in backend main branch
           create_branch: true
           push_options: '--force'
+          base: main
 
       - uses: peter-evans/create-pull-request@v4
         with:
