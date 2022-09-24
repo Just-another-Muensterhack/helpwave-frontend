@@ -25,13 +25,19 @@ const Homepage: React.FC<HomepageProps> = ({ navigation }) => {
                 style={styles.emergencyContainer}
                 onPress={() => {
                     navigation.navigate('Emergency', {});
-                }}>
-                <HWText style={styles.emergencyText}>{safeTranslate('Notfall', currentLanguage)}</HWText>
+                }}
+            >
+                <HWText style={styles.emergencyText}>
+                    {safeTranslate('Notfall', currentLanguage)}
+                </HWText>
             </Pressable>
             <Pressable
                 style={styles.settingsContainer}
-                onPress={() => navigation.navigate('Settings', {})}>
-                <HWText style={styles.settingsText}>{safeTranslate('Einstellungen', currentLanguage)}</HWText>
+                onPress={() => navigation.navigate('Settings', {})}
+            >
+                <HWText style={styles.settingsText}>
+                    {safeTranslate('Einstellungen', currentLanguage)}
+                </HWText>
             </Pressable>
         </View>
     );
