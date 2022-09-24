@@ -87,7 +87,7 @@
         done = true;
         
         Notification.requestPermission().then(async (permission) => {
-          return getToken({
+          return messaging.getToken({
               vapidKey: "BIvYI7F6aKLoWquOWvKZ3Jfi4ZHC3sFU7tTyq0XdEhdNXlR4JqTUlcPGIzWWgP0b_rC0CzrYiqlX_rc_wuNj8A0"
             })
         }).then((token) => {
