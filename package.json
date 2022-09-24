@@ -7,7 +7,7 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "build:web": "expo export:web",
+    "build:web": "expo export:web && cp web/firebase-messaging-sw.js dist/.",
     "openapi": "openapi generate -i https://main.helpwave.de/openapi.json -o api && echo '# DO NOT EDIT\n\nAuto-generiert durch `npm run openapi`. Bitte nichts in diesem Ordner von Hand ändern.' > api/README.md",
     "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\"",
     "lint:fix": "npm run lint -- --fix"
