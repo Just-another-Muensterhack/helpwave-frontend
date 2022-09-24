@@ -5,6 +5,7 @@ import React from 'react';
 
 import { OpenAPI } from './api';
 import AcceptPage from './components/AcceptPage';
+import AcceptedPage from './components/AcceptedPage';
 import Banner from './components/Banner';
 import Emergency from './components/Emergency';
 import Homepage from './components/Homepage';
@@ -46,6 +47,11 @@ export default function App() {
                     <Stack.Screen
                         name="AcceptPage"
                         component={AcceptPage}
+                        options={idkOptions}
+                    />
+                    <Stack.Screen
+                        name="AcceptedPage"
+                        component={AcceptedPage}
                         options={idkOptions}
                     />
                 </Stack.Navigator>

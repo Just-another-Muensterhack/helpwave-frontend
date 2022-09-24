@@ -5,6 +5,7 @@ import React, {
     useEffect,
     useState,
 } from 'react';
+import { Text } from 'react-native';
 
 import { Graph } from '../utils/graph';
 
@@ -29,7 +30,7 @@ export const ProvideGraph: React.FC<PropsWithChildren> = ({ children }) => {
 
     return (
         <GraphContext.Provider value={values}>
-            {graph ? children : <p>no graph found</p>}
+            {graph ? children : <Text>no graph found</Text>}
         </GraphContext.Provider>
     );
 };

@@ -1,15 +1,11 @@
-import { View, Image, Dimensions } from 'react-native';
+import { Image, Dimensions } from 'react-native';
 
 import { ColorAccentWarn } from '../style-constants';
+import { LongLat } from '../utils/types';
 
 const HOST = 'https://api.mapbox.com';
 const ACCESS_TOKEN =
     'pk.eyJ1IjoiZm9zZWZ4IiwiYSI6ImNrOGFkOW56ZjAxNjgzZW0za3dxdHFic3UifQ.85f3mrJqSnISFg20Bz0xng';
-
-interface LongLat {
-    long: number;
-    lat: number;
-}
 
 interface Props {
     marker: LongLat;
@@ -25,7 +21,9 @@ function source(x: number, y: number, props: Props): string {
 }
 
 const Map: React.FC<Props> = (props) => {
-    const { width, height } = Dimensions.get('window');
+    let { width, height } = Dimensions.get('window');
+    height = Math.round(height * 0.6);
+
     return (
         <Image
             source={{ uri: source(width, height, props) }}
