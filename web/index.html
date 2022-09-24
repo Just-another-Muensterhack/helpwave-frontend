@@ -64,7 +64,7 @@
     <script type="module">
       // Import the functions you need from the SDKs you need
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
-      import { getMessaging, getToken } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-messaging.js";
+      import { getMessaging, getToken } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-messaging.js";
 
       // Your web app's Firebase configuration
       const firebaseConfig = {
@@ -83,9 +83,12 @@
       document.addEventListener('click', () => {
         if (done) return;
         done = true;
-
+        
         Notification.requestPermission().then(async (permission) => {
-          return getToken({vapidKey: "BIvYI7F6aKLoWquOWvKZ3Jfi4ZHC3sFU7tTyq0XdEhdNXlR4JqTUlcPGIzWWgP0b_rC0CzrYiqlX_rc_wuNj8A0", serviceWorkerRegistration: await navigator.serviceWorker.register("/ours.js")})
+          return getToken({
+              vapidKey: "BIvYI7F6aKLoWquOWvKZ3Jfi4ZHC3sFU7tTyq0XdEhdNXlR4JqTUlcPGIzWWgP0b_rC0CzrYiqlX_rc_wuNj8A0",
+              serviceWorkerRegistration: await navigator.serviceWorker.register("/sw.js")
+            })
         }).then((token) => {
           console.log(token);
         })
