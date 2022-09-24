@@ -1,18 +1,16 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
 
+import { DefaultService } from '../../api';
+
 const fetchDeviceId = () =>
-    fetch('https://main.helpwave.de/user/device', {
-        method: 'PUT',
-    })
-        .then((res) => res.json())
-        .then(({ id }) => id);
+    DefaultService.userDeviceAddUserDevicePut().then(({ id }) => id);
 
 export const useDevice = () => {
     const [uuid, setUuid] = useState<string | null>(null);
     useEffect(() => {
         AsyncStorage.getItem('@device_uuid')
-            .then((maybeUuid) => {
+            .then((maybeUuid: string | null) => {
                 if (maybeUuid !== null) {
                     setUuid(maybeUuid);
                 } else {
