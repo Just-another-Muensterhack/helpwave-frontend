@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, View, Pressable } from 'react-native';
 
+import { useGraph } from '../hooks/useGraph';
+import { useLanguage } from '../hooks/useLanguage';
 import {
     BorderRadius,
     ColorAccentNeutral,
@@ -10,6 +12,7 @@ import {
     ColorTextPrimary,
 } from '../style-constants';
 import HWText from './HWText';
+import PhoneButton from './PhoneButton';
 
 export type ModalAnswer<T> = {
     text: string;
@@ -21,27 +24,43 @@ export type ModalAnswer<T> = {
 type ModalProps<T> = {
     question: string;
     answers: ModalAnswer<T>[];
+    txt_id: string;
     onAnswer: (answer: ModalAnswer<T>) => void;
 };
 
-function Modal<T>({ question, answers, onAnswer }: ModalProps<T>) {
+function Modal<T>({ question, answers, onAnswer, txt_id }: ModalProps<T>) {
+    const graph = useGraph().graph;
+    const currenLanguage: 'de' | 'en' = useLanguage()
+        .language.substr(0, 2)
+        .toLowerCase() as 'de' | 'en';
+    const currenLanguageGraph = graph.language[currenLanguage];
+    const buttons = (
+        <View style={styles.answerContainer}>
+            {answers.map((answer) => (
+                <Pressable
+                    style={[
+                        styles.answer,
+                        connotationStyles[answer.connotation],
+                    ]}
+                    key={answer.id}
+                    onPress={() => onAnswer(answer)}
+                >
+                    <HWText style={styles.answerText}>
+                        {currenLanguageGraph[answer.id]
+                            ? currenLanguageGraph[answer.id]
+                            : answer.text}
+                    </HWText>
+                </Pressable>
+            ))}
+        </View>
+    );
+
+    const isCallNotice = txt_id === 'es_call_request';
+
     return (
         <View style={styles.modal}>
             <HWText style={styles.question}>{question}</HWText>
-            <View style={styles.answerContainer}>
-                {answers.map((answer) => (
-                    <Pressable
-                        style={[
-                            styles.answer,
-                            connotationStyles[answer.connotation],
-                        ]}
-                        key={answer.id}
-                        onPress={() => onAnswer(answer)}
-                    >
-                        <HWText style={styles.answerText}>{answer.text}</HWText>
-                    </Pressable>
-                ))}
-            </View>
+            {isCallNotice ? <PhoneButton /> : buttons}
         </View>
     );
 }

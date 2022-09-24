@@ -10,7 +10,7 @@ import React, {
 const LanguageContext = createContext<{
     language: string;
     setLanguage: (arg: string) => void;
-}>({ language: 'Deutsch', setLanguage: (arg: string) => {} });
+}>({ language: 'Deutsch', setLanguage: (_: string) => {} });
 
 export const useLanguage = () => useContext(LanguageContext);
 

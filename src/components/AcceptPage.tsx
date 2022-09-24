@@ -1,4 +1,4 @@
-import { NavigationProp } from '@react-navigation/native';
+import { NavigationProp, RouteProp } from '@react-navigation/native';
 import React from 'react';
 import { View } from 'react-native';
 
@@ -11,13 +11,17 @@ import IconButton from './IconButton';
 
 interface Props {
     navigation: NavigationProp<any>;
+    route: RouteProp<{ params: { emergencyUuid: string } }>;
+    emergencyUuid: string;
 }
 
-const AcceptPage: React.FC<Props> = ({ navigation }) => {
+const AcceptPage: React.FC<Props> = ({ navigation, route }) => {
     useAuth();
 
     function accept() {
-        DefaultService.emergencyAcceptEmergencyAcceptPost()
+        DefaultService.emergencyAcceptEmergencyAcceptPost({
+            uuid: route.params.emergencyUuid,
+        })
             .then(() => {
                 navigation.navigate('AcceptedPage', {});
             })
@@ -25,7 +29,9 @@ const AcceptPage: React.FC<Props> = ({ navigation }) => {
     }
 
     function reject() {
-        DefaultService.emergencyDenyEmergencyDenyPost()
+        DefaultService.emergencyDenyEmergencyDenyPost({
+            uuid: route.params.emergencyUuid,
+        })
             .then(() => {
                 navigation.navigate('Homepage', {});
             })
@@ -52,10 +58,4 @@ const AcceptPage: React.FC<Props> = ({ navigation }) => {
     );
 };
 
-// FIXME: this is a temporary wrapper for navigation
-// AcceptPage should get it's position prop from the backend
-const Wrapper = ({ navigation }: any) => {
-    return <AcceptPage navigation={navigation} />;
-};
-
-export default Wrapper;
+export default AcceptPage;
