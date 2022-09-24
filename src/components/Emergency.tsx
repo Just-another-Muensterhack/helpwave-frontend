@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 
 import { useDevice } from '../hooks/useDevice';
 import { useGraph } from '../hooks/useGraph';
@@ -25,9 +25,10 @@ const getTranslationByKey = (
 ) => graph.language[language][source.txt_id];
 
 const Emergency = () => {
+    const [emergencyId, setEmergencyId] = useState<string | null>(null);
     const { graph } = useGraph();
     const [logs, setLogs] = useState<EmergencyLog[]>([]);
-    const uuid = useDevice();
+    const deviceId = useDevice();
     const appendLog = (log: EmergencyLog) => setLogs((logs) => [...logs, log]);
     const [currentQuestion, nextQuestion] = useQuestion(
         graph,
@@ -39,8 +40,6 @@ const Emergency = () => {
             }),
         graph.nodes['consciousness'],
     );
-
-    console.log(uuid)
 
     const sendLogs = async (logs: EmergencyLog[]): Promise<void> => {
         await fetch('https://main.helpwave.de/emergency/log/bulk', {
@@ -60,6 +59,19 @@ const Emergency = () => {
             })
             .catch(console.error);
     }, [logs]);
+
+    useEffect(() => {
+        if (!deviceId || emergencyId) return;
+        fetch('https://main.helpwave.de/emergency/create', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ device: deviceId }),
+        })
+            .then((res) => res.json())
+            .then((data) => setEmergencyId(data.id));
+    }, [deviceId]);
 
     const question = getTranslationByKey(graph, currentQuestion, 'de');
 
