@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { registerRootComponent } from 'expo';
 import React from 'react';
 
-import { OpenAPI } from './api';
+import { OpenAPI } from '../api';
 import Banner from './components/Banner';
 import Emergency from './components/Emergency';
 import Homepage from './components/Homepage';
@@ -11,7 +11,6 @@ import SettingsPage from './components/Settings';
 import { ProvideGraph } from './hooks/useGraph';
 import { ProvideLanguage } from './hooks/useLanguage';
 import { ColorAccentPositive, ColorSecondary } from './style-constants';
-
 
 // further reading: https://blog.logrocket.com/generating-integrating-openapi-services-react/
 OpenAPI.BASE = 'https://main.helpwave.de';
