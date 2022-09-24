@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 
-import { OpenAPI } from '../../api';
-import { LongLat } from '../utils/types';
+import { DefaultService } from '../../api';
+import { LongLat, Event } from '../utils/types';
 import Log from './Log';
 import Map from './Map';
 
@@ -11,13 +11,12 @@ interface Props {
 }
 
 const AcceptedPage: React.FC<Props> = ({ position }) => {
-    const [events, setEvents] = useState([]);
+    const [events, setEvents] = useState([] as Event[]);
 
     useEffect(() => {
         // poll-loop new events for 30 mins
         repeatNMinsLongEveryMSeconds(30, 30, () => {
-            fetch(OpenAPI.BASE + `/emergency/log`)
-                .then((resp) => resp.json())
+            DefaultService.emergencyLogSingleEmergencyLogGet()
                 .then((resp) => {
                     setEvents(
                         resp.questions.map(

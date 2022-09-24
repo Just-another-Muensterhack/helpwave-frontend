@@ -1,10 +1,7 @@
 import React from 'react';
 import { View, FlatList, Text } from 'react-native';
 
-interface Event {
-    text: string;
-    date: Date;
-}
+import { Event } from '../utils/types';
 
 interface LogProps {
     events: Event[];
