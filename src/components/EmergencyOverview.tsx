@@ -39,7 +39,7 @@ const EmergencyOverviewPage: React.FC<EmergencyOverviewPageProps> = ({
                             }}
                         />
                         <Image
-                            source={require('../../assets/profile-picture.png')}
+                            source={require('../../assets/kadtze.png')}
                             style={{
                                 resizeMode: 'contain',
                                 width: 80,
