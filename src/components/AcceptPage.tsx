@@ -3,6 +3,7 @@ import React from 'react';
 import { View } from 'react-native';
 
 import { DefaultService } from '../../api';
+import { useAuth } from '../hooks/useAuth';
 import { ColorSecondary } from '../style-constants';
 import Hey from './Hey';
 import Hr from './Hr';
@@ -13,6 +14,8 @@ interface Props {
 }
 
 const AcceptPage: React.FC<Props> = ({ navigation }) => {
+    useAuth();
+
     function accept() {
         DefaultService.emergencyAcceptEmergencyAcceptPost()
             .then(() => {
