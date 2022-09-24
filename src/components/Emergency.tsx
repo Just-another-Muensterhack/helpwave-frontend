@@ -9,8 +9,13 @@ import { useQuestion } from '../hooks/useQuestion';
 import { ColorSecondary } from '../style-constants';
 import type { Graph } from '../utils/graph';
 import Modal from './Modal';
+import { NavigationProp } from "@react-navigation/native";
 
-const Emergency = () => {
+type EmergencyProps = {
+    navigation: NavigationProp<any>;
+};
+
+const Emergency : React.FC<EmergencyProps> = ({navigation}) => {
     const language: keyof Graph['language'] = useLanguage()
         .language.substr(0, 2)
         .toLowerCase() as 'de' | 'en';
@@ -61,6 +66,12 @@ const Emergency = () => {
         connotation: response.connotation,
         data: response.next,
     }));
+
+    useEffect(() => {
+        if (currentQuestion.end) {
+            navigation.navigate('EmergencyOverview', {});
+        }
+    }, [currentQuestion]);
 
     return (
         <View style={{ backgroundColor: ColorSecondary, flex: 1 }}>
