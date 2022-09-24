@@ -9,6 +9,7 @@ import {
     ColorSecondary,
     ColorTextPrimary,
 } from '../style-constants';
+import HWText from './HWText';
 
 export type ModalAnswer<T> = {
     text: string;
@@ -26,7 +27,7 @@ type ModalProps<T> = {
 function Modal<T>({ question, answers, onAnswer }: ModalProps<T>) {
     return (
         <View style={styles.modal}>
-            <Text style={styles.question}>{question}</Text>
+            <HWText style={styles.question}>{question}</HWText>
             <View style={styles.answerContainer}>
                 {answers.map((answer) => (
                     <Pressable
@@ -37,7 +38,7 @@ function Modal<T>({ question, answers, onAnswer }: ModalProps<T>) {
                         key={answer.id}
                         onPress={() => onAnswer(answer)}
                     >
-                        <Text style={styles.answerText}>{answer.text}</Text>
+                        <HWText style={styles.answerText}>{answer.text}</HWText>
                     </Pressable>
                 ))}
             </View>

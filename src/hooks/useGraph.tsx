@@ -5,8 +5,8 @@ import React, {
     useEffect,
     useState,
 } from 'react';
-import { Text } from 'react-native';
 
+import HWText from '../components/HWText';
 import { ColorTextPrimary } from '../style-constants';
 import { Graph } from '../utils/graph';
 
@@ -34,7 +34,9 @@ export const ProvideGraph: React.FC<PropsWithChildren> = ({ children }) => {
             {graph ? (
                 children
             ) : (
-                <Text style={{ color: ColorTextPrimary }}>no graph found</Text>
+                <HWText style={{ color: ColorTextPrimary }}>
+                    no graph found
+                </HWText>
             )}
         </GraphContext.Provider>
     );

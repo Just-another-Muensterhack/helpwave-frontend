@@ -1,6 +1,6 @@
 import { NavigationProp } from '@react-navigation/native';
 import React from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, View } from 'react-native';
 
 import {
     BorderRadius,
@@ -9,6 +9,7 @@ import {
     ColorSecondary,
     ColorTextPrimary,
 } from '../style-constants';
+import HWText from './HWText';
 
 type HomepageProps = {
     navigation: NavigationProp<any>;
@@ -23,13 +24,13 @@ const Homepage: React.FC<HomepageProps> = ({ navigation }) => {
                     navigation.navigate('Emergency', {});
                 }}
             >
-                <Text style={styles.emergencyText}>Notfall</Text>
+                <HWText style={styles.emergencyText}>Notfall</HWText>
             </Pressable>
             <Pressable
                 style={styles.settingsContainer}
                 onPress={() => navigation.navigate('Settings', {})}
             >
-                <Text style={styles.settingsText}>Einstellungen</Text>
+                <HWText style={styles.settingsText}>Einstellungen</HWText>
             </Pressable>
         </View>
     );
