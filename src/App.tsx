@@ -13,6 +13,7 @@ import { Settings } from "react-native";
 import SettingsPage from "./components/Settings";
 import { ProvideLanguage } from "./hooks/useLanguage";
 
+
 // further reading: https://blog.logrocket.com/generating-integrating-openapi-services-react/
 OpenAPI.BASE = "https://main.helpwave.de";
 

@@ -6,7 +6,6 @@ export { CancelablePromise, CancelError } from './core/CancelablePromise';
 export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
-export type { AddDevice } from './models/AddDevice';
 export type { Body_user_register_user_login_post } from './models/Body_user_register_user_login_post';
 export type { BulkLog } from './models/BulkLog';
 export type { CreateEmergency } from './models/CreateEmergency';
