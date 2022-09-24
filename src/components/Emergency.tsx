@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 
 import { useGraph } from '../hooks/useGraph';
 import { useQuestion } from '../hooks/useQuestion';
