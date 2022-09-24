@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
+import Geolocation from 'react-native-geolocation-service';
 
 import { useDevice } from '../hooks/useDevice';
 import { useGraph } from '../hooks/useGraph';
@@ -26,6 +27,9 @@ const getTranslationByKey = (
 
 const Emergency = () => {
     const [emergencyId, setEmergencyId] = useState<string | null>(null);
+    const [coords, setCoords] = useState<Geolocation.GeoCoordinates | null>(
+        null,
+    );
     const { graph } = useGraph();
     const [logs, setLogs] = useState<EmergencyLog[]>([]);
     const deviceId = useDevice();
@@ -72,6 +76,27 @@ const Emergency = () => {
             .then((res) => res.json())
             .then((data) => setEmergencyId(data.id));
     }, [deviceId]);
+
+    useEffect(() => {
+        Geolocation.getCurrentPosition((position) =>
+            setCoords(position.coords),
+        );
+    }, [emergencyId]);
+
+    useEffect(() => {
+        if (!coords) return;
+        fetch('https://main.helpwave.de/emergency/info', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                id: emergencyId,
+                lat: coords.latitude,
+                lon: coords.longitude,
+            }),
+        }).then();
+    }, [coords]);
 
     const question = getTranslationByKey(graph, currentQuestion, 'de');
 
