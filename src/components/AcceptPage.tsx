@@ -16,7 +16,7 @@ const AcceptPage: React.FC<Props> = ({ navigation }) => {
     function accept() {
         DefaultService.emergencyLogSingleEmergencyAcceptPost()
             .then(() => {
-                navigation.navigate('AcceptedPage');
+                navigation.navigate('AcceptedPage', {});
             })
             .catch((e) => console.error(e));
     }
@@ -24,7 +24,7 @@ const AcceptPage: React.FC<Props> = ({ navigation }) => {
     function reject() {
         DefaultService.emergencyLogSingleEmergencyDenyPost()
             .then(() => {
-                navigation.navigate('Homepage');
+                navigation.navigate('Homepage', {});
             })
             .catch((e) => console.error(e));
     }
