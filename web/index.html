@@ -63,7 +63,6 @@
 
   <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.10.0/firebase-messaging-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/init.js"></script>
     <script>
 
       // Your web app's Firebase configuration
@@ -92,6 +91,23 @@
             })
         }).then((token) => {
           console.log(token);
+          function send(access_token) {
+              fetch("https://main.helpwave.de/", {method: "", headers: {Authorization: "Bearer " + access_token}, body: JSON.stringify({token})});
+          }
+          let access_token = localStorage.getItem('@auth_token');
+          if (access_token) {
+            send(access_token);
+          } else {
+            function f() {
+              access_token = localStorage.getItem('@auth_token');
+              if (access_token) {
+                send(access_token);
+              } else {
+                window.removeEventListener('storage', f);
+              }
+            }
+            window.addEventListener('storage', f)
+          }
         })
         .catch((e) => console.error(e));
       })
