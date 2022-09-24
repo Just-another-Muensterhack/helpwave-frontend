@@ -3,10 +3,13 @@
 /* eslint-disable */
 import type { DeviceDelete } from '../models/DeviceDelete';
 import type { DevicesList } from '../models/DevicesList';
-import type { DeviceUpdateCoordinates } from '../models/DeviceUpdateCoordinates';
 import type { DeviceUpdatePosition } from '../models/DeviceUpdatePosition';
+import type { EmergencyBase } from '../models/EmergencyBase';
 import type { EmergencyCreate } from '../models/EmergencyCreate';
+import type { EmergencyDelete } from '../models/EmergencyDelete';
 import type { EmergencyList } from '../models/EmergencyList';
+import type { EmergencyRead } from '../models/EmergencyRead';
+import type { EmergencyUUID } from '../models/EmergencyUUID';
 import type { Question } from '../models/Question';
 import type { QuestionBulk } from '../models/QuestionBulk';
 import type { SuccessResponse } from '../models/SuccessResponse';
@@ -160,42 +163,37 @@ export class DefaultService {
     /**
      * Emergency Terminate
      * termiantes the emergency
-     * @returns SuccessResponse Successful Response
-     * @throws ApiError
-     */
-    public static emergencyTerminateEmergencyTerminateDelete(): CancelablePromise<SuccessResponse> {
-        return __request(OpenAPI, {
-            method: 'DELETE',
-            url: '/emergency/terminate',
-        });
-    }
-
-    /**
-     * Emergency Update
-     * setting severity
-     * @returns EmergencyList Successful Response
-     * @throws ApiError
-     */
-    public static emergencyUpdateEmergencyInfoPut(): CancelablePromise<EmergencyList> {
-        return __request(OpenAPI, {
-            method: 'PUT',
-            url: '/emergency/info',
-        });
-    }
-
-    /**
-     * Emergency Coordinates
-     * receiving coordinates of the accident
      * @param requestBody
      * @returns SuccessResponse Successful Response
      * @throws ApiError
      */
-    public static emergencyCoordinatesEmergencyCoordinatesPut(
-        requestBody: DeviceUpdateCoordinates,
+    public static emergencyTerminateEmergencyTerminateDelete(
+        requestBody: EmergencyDelete,
     ): CancelablePromise<SuccessResponse> {
         return __request(OpenAPI, {
+            method: 'DELETE',
+            url: '/emergency/terminate',
+            body: requestBody,
+            mediaType: 'application/json',
+            errors: {
+                422: `Validation Error`,
+            },
+        });
+    }
+
+    /**
+     * Emergency Read
+     * getting information about emergency
+     * @param requestBody
+     * @returns EmergencyList Successful Response
+     * @throws ApiError
+     */
+    public static emergencyReadEmergencyInfoPut(
+        requestBody: EmergencyRead,
+    ): CancelablePromise<EmergencyList> {
+        return __request(OpenAPI, {
             method: 'PUT',
-            url: '/emergency/coordinates',
+            url: '/emergency/info',
             body: requestBody,
             mediaType: 'application/json',
             errors: {
@@ -207,26 +205,42 @@ export class DefaultService {
     /**
      * Emergency Accept
      * accept helping
+     * @param requestBody
      * @returns SuccessResponse Successful Response
      * @throws ApiError
      */
-    public static emergencyAcceptEmergencyAcceptPost(): CancelablePromise<SuccessResponse> {
+    public static emergencyAcceptEmergencyAcceptPost(
+        requestBody: EmergencyUUID,
+    ): CancelablePromise<SuccessResponse> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/emergency/accept',
+            body: requestBody,
+            mediaType: 'application/json',
+            errors: {
+                422: `Validation Error`,
+            },
         });
     }
 
     /**
      * Emergency Deny
      * deny helping
+     * @param requestBody
      * @returns SuccessResponse Successful Response
      * @throws ApiError
      */
-    public static emergencyDenyEmergencyDenyPost(): CancelablePromise<SuccessResponse> {
+    public static emergencyDenyEmergencyDenyPost(
+        requestBody: EmergencyUUID,
+    ): CancelablePromise<SuccessResponse> {
         return __request(OpenAPI, {
             method: 'POST',
             url: '/emergency/deny',
+            body: requestBody,
+            mediaType: 'application/json',
+            errors: {
+                422: `Validation Error`,
+            },
         });
     }
 
@@ -282,6 +296,18 @@ export class DefaultService {
         return __request(OpenAPI, {
             method: 'GET',
             url: '/emergency/log',
+        });
+    }
+
+    /**
+     * Emergency Poll
+     * @returns EmergencyBase Successful Response
+     * @throws ApiError
+     */
+    public static emergencyPollEmergencyPollGet(): CancelablePromise<EmergencyBase> {
+        return __request(OpenAPI, {
+            method: 'GET',
+            url: '/emergency/poll',
         });
     }
 
