@@ -1,6 +1,7 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { registerRootComponent } from 'expo';
+import { useFonts } from 'expo-font';
 import React from 'react';
 
 import { OpenAPI } from '../api';
@@ -30,6 +31,14 @@ const idkOptions = {
 };
 
 export default function App() {
+    const [fontsLoaded] = useFonts({
+        Inter: require('../assets/fonts/Inter.ttf'),
+    });
+
+    if (!fontsLoaded) {
+        return null;
+    }
+
     return (
         <ProvideLanguage>
             <ProvideGraph>
