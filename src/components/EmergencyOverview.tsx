@@ -16,10 +16,12 @@ import {
 
 type EmergencyOverviewPageProps = {
     navigation: NavigationProp<any>;
+    route: { params: { idfkMirIstDasAllesGeradeEgal?: string; }; };
 };
 
 const EmergencyOverviewPage: React.FC<EmergencyOverviewPageProps> = ({
     navigation,
+    route,
 }) => {
     const currentLanguage = useLanguage().language;
     return (
@@ -76,14 +78,7 @@ const EmergencyOverviewPage: React.FC<EmergencyOverviewPageProps> = ({
                         lineHeight: 40,
                     }}
                 >
-                    {safeTranslate('Bleibe', currentLanguage) + ' '}
-                    <HWText style={{ color: ColorAccentPositive }}>
-                        {safeTranslate('ruhig', currentLanguage) + ', '}
-                    </HWText>
-                    {safeTranslate('mach auf dich', currentLanguage) + ' '}
-                    <HWText style={{ color: ColorAccentPositive }}>
-                        {safeTranslate('aufmerksam', currentLanguage) + '.'}
-                    </HWText>
+                    {route.params.idfkMirIstDasAllesGeradeEgal}
                 </HWText>
             </View>
         </View>

@@ -7,6 +7,7 @@ export type Response = {
 export type Question = {
     txt_id: string;
     responses: Response[];
+    end?: true;
 };
 
 export type Graph = {

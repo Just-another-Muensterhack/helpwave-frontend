@@ -1,3 +1,4 @@
+import { NavigationProp } from '@react-navigation/native';
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 
@@ -15,6 +16,7 @@ const Emergency = () => {
         .language.substr(0, 2)
         .toLowerCase() as 'de' | 'en';
     const [emergencyId, setEmergencyId] = useState<string | null>(null);
+
     const { graph } = useGraph();
     const [logs, setLogs] = useState<Question[]>([]);
     const { deviceId } = useAuth();
@@ -61,6 +63,18 @@ const Emergency = () => {
         connotation: response.connotation,
         data: response.next,
     }));
+
+    useEffect(() => {
+        if (currentQuestion.end) {
+            navigation.navigate('EmergencyOverview', {
+                idfkMirIstDasAllesGeradeEgal: getTranslationByKey(
+                    graph,
+                    currentQuestion,
+                    currentLanguageCode,
+                ),
+            });
+        }
+    }, [currentQuestion]);
 
     return (
         <View style={{ backgroundColor: ColorSecondary, flex: 1 }}>
