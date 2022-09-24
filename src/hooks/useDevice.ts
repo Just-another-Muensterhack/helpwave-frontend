@@ -1,13 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
 
-// const fetchDeviceId = () =>
-//     fetch('https://main.helpwave.de/user/device', {
-//         method: 'PUT',
-//     })
-//         .then((res) => res.json())
-//         .then(({ id }) => id);
-const fetchDeviceId = () => Promise.resolve('1234567890');
+const fetchDeviceId = () =>
+    fetch('https://main.helpwave.de/user/device', {
+        method: 'PUT',
+    })
+        .then((res) => res.json())
+        .then(({ id }) => id);
 
 export const useDevice = () => {
     const [uuid, setUuid] = useState<string | null>(null);
