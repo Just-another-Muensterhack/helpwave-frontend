@@ -10,6 +10,7 @@ import {
     ColorTextPrimary,
 } from '../style-constants';
 import HWText from './HWText';
+import PhoneButton from './PhoneButton';
 
 export type ModalAnswer<T> = {
     text: string;
@@ -21,27 +22,34 @@ export type ModalAnswer<T> = {
 type ModalProps<T> = {
     question: string;
     answers: ModalAnswer<T>[];
+    txt_id: string;
     onAnswer: (answer: ModalAnswer<T>) => void;
 };
 
-function Modal<T>({ question, answers, onAnswer }: ModalProps<T>) {
+function Modal<T>({ question, answers, onAnswer, txt_id }: ModalProps<T>) {
+    const buttons = (
+        <View style={styles.answerContainer}>
+            {answers.map((answer) => (
+                <Pressable
+                    style={[
+                        styles.answer,
+                        connotationStyles[answer.connotation],
+                    ]}
+                    key={answer.id}
+                    onPress={() => onAnswer(answer)}
+                >
+                    <HWText style={styles.answerText}>{answer.text}</HWText>
+                </Pressable>
+            ))}
+        </View>
+    );
+
+    const isCallNotice = txt_id === 'es_call_request';
+
     return (
         <View style={styles.modal}>
             <HWText style={styles.question}>{question}</HWText>
-            <View style={styles.answerContainer}>
-                {answers.map((answer) => (
-                    <Pressable
-                        style={[
-                            styles.answer,
-                            connotationStyles[answer.connotation],
-                        ]}
-                        key={answer.id}
-                        onPress={() => onAnswer(answer)}
-                    >
-                        <HWText style={styles.answerText}>{answer.text}</HWText>
-                    </Pressable>
-                ))}
-            </View>
+            {isCallNotice ? <PhoneButton /> : buttons}
         </View>
     );
 }

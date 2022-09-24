@@ -66,6 +66,7 @@ const Emergency = () => {
     return (
         <View style={{ backgroundColor: ColorSecondary, flex: 1 }}>
             <Modal
+                txt_id={currentQuestion.txt_id}
                 question={question}
                 answers={responses}
                 onAnswer={nextQuestion}
