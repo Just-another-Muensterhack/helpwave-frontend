@@ -8,4 +8,5 @@ export const ColorTextPrimary = '#EEE';
 export const ColorTextSecondary = '#D4D4D4';
 export const ColorTextGrey = '#666669';
 export const ColorGrey = '#4A4A4A';
+export const ColorGreySecondary = '#2E2E2E';
 export const BorderRadius = 10;
