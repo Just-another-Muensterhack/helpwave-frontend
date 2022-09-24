@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 
 import { DefaultService, Question } from '../../api';
-import { useDevice } from '../hooks/useDevice';
+import { useAuth } from '../hooks/useAuth';
 import { useGraph } from '../hooks/useGraph';
 import { useQuestion } from '../hooks/useQuestion';
 import { ColorSecondary } from '../style-constants';
@@ -23,7 +23,7 @@ const Emergency = () => {
     const [emergencyId, setEmergencyId] = useState<string | null>(null);
     const { graph } = useGraph();
     const [logs, setLogs] = useState<Question[]>([]);
-    const deviceId = useDevice();
+    const { deviceId } = useAuth();
     const appendLog = (log: Question) => setLogs((logs) => [...logs, log]);
     const [currentQuestion, nextQuestion] = useQuestion(
         graph,
