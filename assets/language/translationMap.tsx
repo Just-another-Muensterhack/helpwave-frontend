@@ -1,3 +1,4 @@
+// Map that translates german words to english
 export const TranslationMap: {[key:string]:string} = {
   "Ja":"Yes",
   "Nein":"No",

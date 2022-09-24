@@ -32,7 +32,7 @@ const Homepage: React.FC<HomepageProps> = ({ navigation }) => {
         style={styles.settingsContainer}
         onPress={() => navigation.navigate("Settings", {})}
       >
-        <Text style={styles.settingsText}>safeTranslate("Einstellungen", currentLanguage)</Text>
+        <Text style={styles.settingsText}>{safeTranslate("Einstellungen", currentLanguage)}</Text>
       </Pressable>
     </View>
   );
