@@ -12,7 +12,7 @@ const Hey: React.FC<Props> = ({ name, kind }) => {
     return (
         <Text style={{ fontSize: 25, color: 'white', padding: 40 }}>
             Hey <Text style={{ color: ColorAccentPositive }}>{name}</Text>...
-            {kind == 'can_you_help' ? '\nkannst du helfen?' : ''}
+            {kind === 'can_you_help' ? '\nkannst du helfen?' : ''}
         </Text>
     );
 };

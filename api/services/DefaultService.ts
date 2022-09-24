@@ -1,7 +1,6 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { AddDevice } from '../models/AddDevice';
 import type { Body_user_register_user_login_post } from '../models/Body_user_register_user_login_post';
 import type { BulkLog } from '../models/BulkLog';
 import type { CreateEmergency } from '../models/CreateEmergency';
@@ -147,21 +146,13 @@ export class DefaultService {
     /**
      * User Device Add
      * adds a new device to a user
-     * @param requestBody
      * @returns UuidResponse Successful Response
      * @throws ApiError
      */
-    public static userDeviceAddUserDevicePut(
-        requestBody: AddDevice,
-    ): CancelablePromise<UuidResponse> {
+    public static userDeviceAddUserDevicePut(): CancelablePromise<UuidResponse> {
         return __request(OpenAPI, {
             method: 'PUT',
             url: '/user/device',
-            body: requestBody,
-            mediaType: 'application/json',
-            errors: {
-                422: `Validation Error`,
-            },
         });
     }
 

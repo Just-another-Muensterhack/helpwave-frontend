@@ -3,7 +3,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { registerRootComponent } from 'expo';
 import React from 'react';
 
-import { OpenAPI } from './api';
+import { OpenAPI } from '../api';
 import AcceptPage from './components/AcceptPage';
 import AcceptedPage from './components/AcceptedPage';
 import Banner from './components/Banner';

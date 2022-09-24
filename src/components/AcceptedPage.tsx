@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 
-import { OpenAPI } from '../api';
+import { OpenAPI } from '../../api';
 import { LongLat } from '../utils/types';
 import Log from './Log';
 import Map from './Map';
@@ -11,7 +11,6 @@ interface Props {
 }
 
 const AcceptedPage: React.FC<Props> = ({ position }) => {
-    // TODO: remove test data
     const [events, setEvents] = useState([]);
 
     useEffect(() => {
